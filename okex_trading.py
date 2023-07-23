@@ -311,6 +311,9 @@ def order():
     else:
         pass
 
+    # 发送微信通知
+    requests.get(
+        f'https://sctapi.ftqq.com/SCT143186TIvKuCgmwWnzzzGQ6mE5qmyFU.send?title=okex_{_params["symbol"]}_{_params["side"]}')
     return ret
 
 
