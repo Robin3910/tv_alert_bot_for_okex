@@ -42,6 +42,7 @@ symbol = config['trading']['symbol']
 amount = config['trading']['amount']
 tdMode = config['trading']['td_mode']
 lever = config['trading']['lever']
+stop_loss_percent = config['trading']['stop_loss_percent']
 
 # 交易所API账户配置
 accountConfig = {
@@ -302,10 +303,12 @@ def order():
                                                 _params['ordType'], _params['tdMode'])
             # 挂上止损单
             stop_side = "buy"
+            stop_loss_price = float(_params['price']) * (1 - stop_loss_percent)
             if _params["side"].lower() == "buy":
                 stop_side = "sell"
+                stop_loss_price = float(_params['price']) * (1 + stop_loss_percent)
 
-            createOrder(_params['symbol'], sz, _params['price'], stop_side,
+            createOrder(_params['symbol'], sz, str(stop_loss_price), stop_side,
                         _params['ordType'], _params['tdMode'])
             lastOrdType = _params['side']
     # 平仓
