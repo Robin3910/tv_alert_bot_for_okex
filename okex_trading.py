@@ -249,6 +249,8 @@ def before_req():
     if request.json is None:
         abort(400)
     if request.remote_addr not in ipWhiteList:
+        logging.info(f'ipWhiteList: {ipWhiteList}')
+        logging.error(f'ip is not in ipWhiteList: {request.remote_addr}')
         abort(403)
     # if "apiSec" not in request.json or request.json["apiSec"] != apiSec:
     #     abort(401)
@@ -298,6 +300,13 @@ def order():
         else:
             ret["createOrderRes"], ret['msg'] = createOrder(_params['symbol'], sz, _params['price'], _params['side'],
                                                 _params['ordType'], _params['tdMode'])
+            # 挂上止损单
+            stop_side = "buy"
+            if _params["side"].lower() == "buy":
+                stop_side = "sell"
+
+            createOrder(_params['symbol'], sz, _params['price'], stop_side,
+                        _params['ordType'], _params['tdMode'])
             lastOrdType = _params['side']
     # 平仓
     elif _params['side'].lower() in ["close"]:
