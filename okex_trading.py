@@ -42,7 +42,6 @@ symbol = config['trading']['symbol']
 amount = config['trading']['amount']
 tdMode = config['trading']['td_mode']
 lever = config['trading']['lever']
-stop_loss_percent = config['trading']['stop_loss_percent']
 
 # 交易所API账户配置
 accountConfig = {
@@ -239,6 +238,14 @@ def amountConvertToSZ(_symbol, _amount, _price, _ordType):
     return int(sz)
 
 
+def getPricePrecision(price):
+    val_str = str(price)
+    digits_location = val_str.find('.')
+    if digits_location:
+        return len(val_str[digits_location + 1:])
+    return 0
+
+
 # 初始化杠杆倍数
 setLever(symbol, tdMode, lever)
 
@@ -280,6 +287,8 @@ def order():
         _params["amount"] = amount
     if "tdMode" not in _params:
         _params["tdMode"] = tdMode
+    if "slPercent" not in _params:
+        _params['slPercent'] = 0.03
     if "side" not in _params:
         ret['msg'] = "Please specify side parameter"
         return ret
@@ -301,16 +310,37 @@ def order():
         else:
             ret["createOrderRes"], ret['msg'] = createOrder(_params['symbol'], sz, _params['price'], _params['side'],
                                                 _params['ordType'], _params['tdMode'])
-            # 挂上止损单
-            stop_side = "buy"
-            stop_loss_price = float(_params['price']) * (1 - stop_loss_percent)
-            if _params["side"].lower() == "buy":
-                stop_side = "sell"
-                stop_loss_price = float(_params['price']) * (1 + stop_loss_percent)
 
-            createOrder(_params['symbol'], sz, str(stop_loss_price), stop_side,
-                        _params['ordType'], _params['tdMode'])
-            lastOrdType = _params['side']
+            # 获取标记价格
+            mark_price = exchange.publicGetPublicMarkPrice(params={"instId": symbol, "instType": "SWAP"})['data'][0]['markPx']
+
+            stop_loss_percent = float(_params['slPercent'])
+
+            _params['price'] = mark_price
+            # 挂上止损单
+            stop_side = "buy"  # 当前做空，止损单挂多单
+            stop_loss_price = float(_params['price']) * (1 + stop_loss_percent)
+            if _params["side"].lower() == "buy":
+                stop_side = "sell"  # 当前做多，止损单挂空单
+                stop_loss_price = float(_params['price']) * (1 - stop_loss_percent)
+
+            pricePrecision = getPricePrecision(_params['price'])
+            stop_loss_price = round(stop_loss_price, pricePrecision)
+
+            logging.info(f'create stop loss order|symbol:{symbol}|stop_loss_price: {stop_loss_price}|stop '
+                         f'side: {stop_side}|sz: {sz}')
+
+            privatePostTradeOrderAlgoParams = {
+                "instId": symbol,
+                "tdMode": tdMode,
+                "side": stop_side,
+                "ordType": "conditional",
+                "sz": sz,
+                "slTriggerPx": stop_loss_price,
+                "slOrdPx": stop_loss_price
+            }
+            exchange.privatePostTradeOrderAlgo(params=privatePostTradeOrderAlgoParams)
+
     # 平仓
     elif _params['side'].lower() in ["close"]:
         lastOrdType = None
