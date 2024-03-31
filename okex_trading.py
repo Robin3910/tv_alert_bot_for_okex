@@ -27,7 +27,7 @@ elif os.path.exists('./config.ini'):
     config['trading']['enable_stop_loss'] = config['trading']['enable_stop_loss'].lower() == "true"
     config['trading']['enable_stop_gain'] = config['trading']['enable_stop_gain'].lower() == "true"
 else:
-    logging.info("The configuration file config.json does not exist and the program is about to exit.")
+    print("The configuration file config.json does not exist and the program is about to exit.")
     exit()
 
 # 服务配置
@@ -133,10 +133,10 @@ def setLever(_symbol, _tdMode, _lever):
     try:
         privatePostAccountSetLeverageRes = exchange.privatePostAccountSetLeverage(
             params={"instId": _symbol, "mgnMode": _tdMode, "lever": _lever})
-        # logging.info(json.dumps(privatePostAccountSetLeverageRes))
+        # print(json.dumps(privatePostAccountSetLeverageRes))
         return True
     except Exception as e:
-        # logging.error("privatePostTradeCancelBatchOrders " + str(e))
+        # print("privatePostTradeCancelBatchOrders " + str(e))
         return False
 
 # 取消止盈止损订单
@@ -146,10 +146,10 @@ def setLever(_symbol, _tdMode, _lever):
 def cancelLastOrder(_symbol, _lastOrdId):
     try:
         res = exchange.privatePostTradeCancelOrder(params={"instId": _symbol, "ordId": _lastOrdId})
-        # logging.info("privatePostTradeCancelBatchOrders " + json.dumps(res))
+        # print("privatePostTradeCancelBatchOrders " + json.dumps(res))
         return True
     except Exception as e:
-        # logging.error("privatePostTradeCancelBatchOrders " + str(e))
+        # print("privatePostTradeCancelBatchOrders " + str(e))
         return False
 
 
@@ -157,10 +157,10 @@ def cancelLastOrder(_symbol, _lastOrdId):
 def closeAllPosition(_symbol, _tdMode):
     try:
         res = exchange.privatePostTradeClosePosition(params={"instId": _symbol, "mgnMode": _tdMode})
-        # logging.info("privatePostTradeClosePosition " + json.dumps(res))
+        # print("privatePostTradeClosePosition " + json.dumps(res))
         return True
     except Exception as e:
-        logging.error("privatePostTradeClosePosition " + str(e))
+        print("privatePostTradeClosePosition " + str(e))
         return False
 
 # 开仓
@@ -177,10 +177,10 @@ def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode, enable_stop_
             try:
                 _thread.start_new_thread(sltpThread, (lastOrdId, _side, _symbol, _amount, _tdMode, config))
             except:
-                logging.error("Error: unable to run sltpThread")
+                print("Error: unable to run sltpThread")
         return True, "create order successfully"
     except Exception as e:
-        logging.error("createOrder " + str(e))
+        print("createOrder " + str(e))
         return False, str(e)
 
 
@@ -195,7 +195,7 @@ def initInstruments():
             swapInstruments = swapInstrumentsRes['data']
             c = c + 1
     except Exception as e:
-        logging.error("publicGetPublicInstruments " + str(e))
+        print("publicGetPublicInstruments " + str(e))
     try:
         # 获取交割合约基础信息
         futureInstrumentsRes = exchange.publicGetPublicInstruments(params={"instType": "FUTURES"})
@@ -204,7 +204,7 @@ def initInstruments():
             futureInstruments = futureInstrumentsRes['data']
             c = c + 1
     except Exception as e:
-        logging.error("publicGetPublicInstruments " + str(e))
+        print("publicGetPublicInstruments " + str(e))
     return c >= 2
 
 # 将 amount 币数转换为合约张数
@@ -253,12 +253,12 @@ app = Flask(__name__)
 
 @app.before_request
 def before_req():
-    logging.info(request.json)
+    print(request.json)
     if request.json is None:
         abort(400)
     if request.remote_addr not in ipWhiteList:
-        logging.info(f'ipWhiteList: {ipWhiteList}')
-        logging.error(f'ip is not in ipWhiteList: {request.remote_addr}')
+        print(f'ipWhiteList: {ipWhiteList}')
+        print(f'ip is not in ipWhiteList: {request.remote_addr}')
         abort(403)
     # if "apiSec" not in request.json or request.json["apiSec"] != apiSec:
     #     abort(401)
@@ -327,7 +327,7 @@ def order():
             pricePrecision = getPricePrecision(_params['price'])
             stop_loss_price = round(stop_loss_price, pricePrecision)
 
-            logging.info(f'create stop loss order|symbol:{symbol}|stop_loss_price: {stop_loss_price}|stop '
+            print(f'create stop loss order|symbol:{symbol}|stop_loss_price: {stop_loss_price}|stop '
                          f'side: {stop_side}|sz: {sz}')
 
             privatePostTradeOrderAlgoParams = {
@@ -362,19 +362,19 @@ def order():
 if __name__ == '__main__':
     try:
         ip = json.load(urllib.request.urlopen('http://httpbin.org/ip'))['origin']
-        logging.info(
+        print(
             "②.It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        logging.info(
+        print(
             "③.Please be sure to modify apiSec in config.ini and modify it to a complex key.".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        logging.info(
+        print(
             "The system interface service is about to start! Service listening address:{listenHost}:{listenPort}".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        logging.info(
+        print(
             "接口外网访问地址：http://{ip}:{listenPort}/order".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        logging.info("It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background")
+        print("It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background")
 
         # 初始化交易币对基础信息
         if initInstruments() is False:
@@ -383,5 +383,5 @@ if __name__ == '__main__':
         # 启动服务
         app.run(debug=debugMode, port=listenPort, host=listenHost)
     except Exception as e:
-        logging.error(e)
+        print(e)
         pass
