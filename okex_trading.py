@@ -373,7 +373,7 @@ if __name__ == '__main__':
             "The system interface service is about to start! Service listening address:{listenHost}:{listenPort}".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
         print(
-            "interface addr：http://{ip}:{listenPort}/order".format(
+            "interface addr: http://{ip}:{listenPort}/order".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
         print("It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background")
 
