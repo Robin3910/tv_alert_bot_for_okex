@@ -287,8 +287,8 @@ def order():
         _params["amount"] = amount
     if "tdMode" not in _params:
         _params["tdMode"] = tdMode
-    if "slPercent" not in _params:
-        _params['slPercent'] = 0.03
+    # if "slPercent" not in _params:
+    #     _params['slPercent'] = 0.03
     if "side" not in _params:
         ret['msg'] = "Please specify side parameter"
         return ret
@@ -311,35 +311,36 @@ def order():
             ret["createOrderRes"], ret['msg'] = createOrder(_params['symbol'], sz, _params['price'], _params['side'],
                                                 _params['ordType'], _params['tdMode'])
 
-            # 获取标记价格
-            mark_price = exchange.publicGetPublicMarkPrice(params={"instId": symbol, "instType": "SWAP"})['data'][0]['markPx']
+            if "slPercent" in _params:
+                # 获取标记价格
+                mark_price = exchange.publicGetPublicMarkPrice(params={"instId": symbol, "instType": "SWAP"})['data'][0]['markPx']
 
-            stop_loss_percent = float(_params['slPercent'])
+                stop_loss_percent = float(_params['slPercent'])
 
-            _params['price'] = mark_price
-            # 挂上止损单
-            stop_side = "buy"  # 当前做空，止损单挂多单
-            stop_loss_price = float(_params['price']) * (1 + stop_loss_percent)
-            if _params["side"].lower() == "buy":
-                stop_side = "sell"  # 当前做多，止损单挂空单
-                stop_loss_price = float(_params['price']) * (1 - stop_loss_percent)
+                _params['price'] = mark_price
+                # 挂上止损单
+                stop_side = "buy"  # 当前做空，止损单挂多单
+                stop_loss_price = float(_params['price']) * (1 + stop_loss_percent)
+                if _params["side"].lower() == "buy":
+                    stop_side = "sell"  # 当前做多，止损单挂空单
+                    stop_loss_price = float(_params['price']) * (1 - stop_loss_percent)
 
-            pricePrecision = getPricePrecision(_params['price'])
-            stop_loss_price = round(stop_loss_price, pricePrecision)
+                pricePrecision = getPricePrecision(_params['price'])
+                stop_loss_price = round(stop_loss_price, pricePrecision)
 
-            print(f'create stop loss order|symbol:{symbol}|stop_loss_price: {stop_loss_price}|stop '
-                         f'side: {stop_side}|sz: {sz}')
+                print(f'create stop loss order|symbol:{symbol}|stop_loss_price: {stop_loss_price}|stop '
+                             f'side: {stop_side}|sz: {sz}')
 
-            privatePostTradeOrderAlgoParams = {
-                "instId": symbol,
-                "tdMode": tdMode,
-                "side": stop_side,
-                "ordType": "conditional",
-                "sz": sz,
-                "slTriggerPx": stop_loss_price,
-                "slOrdPx": stop_loss_price
-            }
-            exchange.privatePostTradeOrderAlgo(params=privatePostTradeOrderAlgoParams)
+                privatePostTradeOrderAlgoParams = {
+                    "instId": symbol,
+                    "tdMode": tdMode,
+                    "side": stop_side,
+                    "ordType": "conditional",
+                    "sz": sz,
+                    "slTriggerPx": stop_loss_price,
+                    "slOrdPx": stop_loss_price
+                }
+                exchange.privatePostTradeOrderAlgo(params=privatePostTradeOrderAlgoParams)
 
     # 平仓
     elif _params['side'].lower() in ["close"]:
