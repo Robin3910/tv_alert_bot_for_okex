@@ -364,16 +364,16 @@ if __name__ == '__main__':
     try:
         ip = json.load(urllib.request.urlopen('http://httpbin.org/ip'))['origin']
         print(
-            "②.It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.".format(
+            "It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
         print(
-            "③.Please be sure to modify apiSec in config.ini and modify it to a complex key.".format(
+            "Please be sure to modify apiSec in config.ini and modify it to a complex key.".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
         print(
             "The system interface service is about to start! Service listening address:{listenHost}:{listenPort}".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
         print(
-            "接口外网访问地址：http://{ip}:{listenPort}/order".format(
+            "interface addr：http://{ip}:{listenPort}/order".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
         print("It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background")
 
