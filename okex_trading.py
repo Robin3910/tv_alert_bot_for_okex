@@ -58,7 +58,7 @@ accountConfig = {
 # 格式化日志
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%Y/%m/%d/ %H:%M:%S %p"
-logging.basicConfig(filename='bot.log', level=print, format=LOG_FORMAT, datefmt=DATE_FORMAT)
+# logging.basicConfig(filename='bot.log', level=print, format=LOG_FORMAT, datefmt=DATE_FORMAT)
 # logging.FileHandler(filename='bot.log')
 
 # CCXT初始化
