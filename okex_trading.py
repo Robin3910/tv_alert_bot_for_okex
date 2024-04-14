@@ -58,8 +58,8 @@ accountConfig = {
 # 格式化日志
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%Y/%m/%d/ %H:%M:%S %p"
-logging.basicConfig(filename='okex_trade.log', level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
-# logging.FileHandler(filename='okex_trade.log', encoding=)
+logging.basicConfig(filename='bot.log', level=logging.INFO, format=LOG_FORMAT, datefmt=DATE_FORMAT)
+logging.FileHandler(filename='bot.log')
 
 # CCXT初始化
 exchange = ccxt.okex5(config={
