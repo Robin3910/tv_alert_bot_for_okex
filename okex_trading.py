@@ -122,7 +122,7 @@ def sltpThread(oid, side, symbol, sz, tdMode, config):
                 lastOrdType = None
                 break
         except Exception as e:
-            logging.info(e)
+            logging.error(e)
         time.sleep(1)
     logging.info("订单{oid}止盈止损单挂单结束".format(oid=oid))
 
@@ -357,5 +357,5 @@ if __name__ == '__main__':
         # 启动服务
         app.run(debug=debugMode, port=listenPort, host=listenHost)
     except Exception as e:
-        logging.info(e)
+        logging.error(e)
         pass
