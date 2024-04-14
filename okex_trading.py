@@ -303,7 +303,7 @@ def order():
         pos_res = exchange.privateGetAccountPositions(params={"instId": _params['symbol']})
         pos_side = pos_res['data'][0]['posSide']
         pos_amount = int(pos_res['data'][0]['pos'])
-        print("pre pos side: " + pos_side + "|pos amount: " + pos_amount)
+        print("pre pos side: " + pos_side + "|pos amount: " + str(pos_amount))
 
         if (_params['side'].lower() == "sell" and pos_amount > 0) or (_params['side'].lower() == "buy" and pos_amount < 0):
             ret["closedPosition"] = closeAllPosition(_params['symbol'], _params['tdMode'])
