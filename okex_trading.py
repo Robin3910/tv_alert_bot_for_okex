@@ -27,7 +27,7 @@ elif os.path.exists('./config.ini'):
     config['trading']['enable_stop_loss'] = config['trading']['enable_stop_loss'].lower() == "true"
     config['trading']['enable_stop_gain'] = config['trading']['enable_stop_gain'].lower() == "true"
 else:
-    print("The configuration file config.json does not exist and the program is about to exit.")
+    logging.info("The configuration file config.json does not exist and the program is about to exit.")
     exit()
 
 # 服务配置
@@ -99,7 +99,7 @@ def sltpThread(oid, side, symbol, sz, tdMode, config):
     while True:
         try:
             privateGetTradeOrderRes = exchange.privateGetTradeOrder(params={"ordId": oid,"instId": symbol})
-            print(privateGetTradeOrderRes)
+            logging.info(privateGetTradeOrderRes)
             if privateGetTradeOrderRes['data'][0]['state'] == "filled":
                 avgPx = float(privateGetTradeOrderRes['data'][0]['avgPx'])
                 direction = -1 if side.lower() == "buy" else 1
@@ -111,7 +111,7 @@ def sltpThread(oid, side, symbol, sz, tdMode, config):
                 privatePostTradeOrderAlgoParams['slOrdPx'] = '%.12f' % slOrdPx
                 privatePostTradeOrderAlgoParams['tpTriggerPx'] = '%.12f' % tpTriggerPx
                 privatePostTradeOrderAlgoParams['tpOrdPx'] = '%.12f' % tpOrdPx
-                print("订单{oid}设置止盈止损...".format(oid=oid))
+                logging.info("订单{oid}设置止盈止损...".format(oid=oid))
                 privatePostTradeOrderAlgoRes = exchange.privatePostTradeOrderAlgo(params=privatePostTradeOrderAlgoParams)
                 if 'code' in privatePostTradeOrderAlgoRes and privatePostTradeOrderAlgoRes['code'] == '0':
                     lastAlgoOrdId = privatePostTradeOrderAlgoRes['data'][0]['algoId']
@@ -122,9 +122,9 @@ def sltpThread(oid, side, symbol, sz, tdMode, config):
                 lastOrdType = None
                 break
         except Exception as e:
-            print(e)
+            logging.info(e)
         time.sleep(1)
-    print("订单{oid}止盈止损单挂单结束".format(oid=oid))
+    logging.info("订单{oid}止盈止损单挂单结束".format(oid=oid))
 
 
 
@@ -160,7 +160,7 @@ def closeAllPosition(_symbol, _tdMode):
         # logging.info("privatePostTradeClosePosition " + json.dumps(res))
         return True
     except Exception as e:
-        print("privatePostTradeClosePosition " + str(e))
+        logging.info("privatePostTradeClosePosition " + str(e))
         return False
 
 # 开仓
@@ -336,19 +336,19 @@ def order():
 if __name__ == '__main__':
     try:
         ip = json.load(urllib.request.urlopen('http://httpbin.org/ip'))['origin']
-        print(
+        logging.info(
             "It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        print(
+        logging.info(
             "Please be sure to modify apiSec in config.ini and modify it to a complex key.".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        print(
+        logging.info(
             "The system interface service is about to start! Service listening address:{listenHost}:{listenPort}".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        print(
+        logging.info(
             "interface addr: http://{ip}:{listenPort}/order".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        print("It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background")
+        logging.info("It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background")
 
         # 初始化交易币对基础信息
         if initInstruments() is False:
@@ -357,5 +357,5 @@ if __name__ == '__main__':
         # 启动服务
         app.run(debug=debugMode, port=listenPort, host=listenHost)
     except Exception as e:
-        print(e)
+        logging.info(e)
         pass
