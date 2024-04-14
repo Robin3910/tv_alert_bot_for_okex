@@ -27,7 +27,7 @@ elif os.path.exists('./config.ini'):
     config['trading']['enable_stop_loss'] = config['trading']['enable_stop_loss'].lower() == "true"
     config['trading']['enable_stop_gain'] = config['trading']['enable_stop_gain'].lower() == "true"
 else:
-    logging.info("配置文件 config.json 不存在，程序即将退出")
+    print("The configuration file config.json does not exist and the program is about to exit.")
     exit()
 
 # 服务配置
@@ -160,7 +160,7 @@ def closeAllPosition(_symbol, _tdMode):
         # logging.info("privatePostTradeClosePosition " + json.dumps(res))
         return True
     except Exception as e:
-        logging.error("privatePostTradeClosePosition " + str(e))
+        print("privatePostTradeClosePosition " + str(e))
         return False
 
 # 开仓
@@ -287,8 +287,8 @@ def order():
         _params["amount"] = amount
     if "tdMode" not in _params:
         _params["tdMode"] = tdMode
-    if "slPercent" not in _params:
-        _params['slPercent'] = 0.03
+    # if "slPercent" not in _params:
+    #     _params['slPercent'] = 0.03
     if "side" not in _params:
         ret['msg'] = "Please specify side parameter"
         return ret
@@ -336,26 +336,26 @@ def order():
 if __name__ == '__main__':
     try:
         ip = json.load(urllib.request.urlopen('http://httpbin.org/ip'))['origin']
-        logging.info(
-            "②.建议运行再在有独立IP的服务器上，若在个人电脑运行，需要FRP内网穿透，而且影响软件效率".format(
+        print(
+            "It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        logging.info(
-            "③.请务必修改 config.ini 中的apiSec，随便修改为复杂的密钥".format(
+        print(
+            "Please be sure to modify apiSec in config.ini and modify it to a complex key.".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        logging.info(
-            "系统接口服务即将启动！服务监听地址{listenHost}:{listenPort}".format(
+        print(
+            "The system interface service is about to start! Service listening address:{listenHost}:{listenPort}".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        logging.info(
-            "接口外网访问地址：http://{ip}:{listenPort}/order".format(
+        print(
+            "interface addr: http://{ip}:{listenPort}/order".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        logging.info("推荐使用nohup python3 okex_trading.py & 将程序运行到linux后台")
+        print("It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background")
 
         # 初始化交易币对基础信息
         if initInstruments() is False:
-            msg = "初始化货币基础信息失败，请重试"
+            msg = "Failed to initialize currency base information, please try again"
             raise Exception(msg)
         # 启动服务
         app.run(debug=debugMode, port=listenPort, host=listenHost)
     except Exception as e:
-        logging.error(e)
+        print(e)
         pass
