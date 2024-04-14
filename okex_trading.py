@@ -300,9 +300,13 @@ def order():
     global lastOrdType
     if _params['side'].lower() in ["buy", "sell"]:
 
-        # 先取消未成交的挂单 然后平仓
+        pos_res = exchange.privateGetAccountPositions(params={"instId": _params['symbol']})
+        pos_side = pos_res['data'][0]['posSide']
+        if (_params['side'].lower() == "sell" and pos_side == "long") or (_params['side'].lower() == "buy" and pos_side == "short"):
+            ret["closedPosition"] = closeAllPosition(_params['symbol'], _params['tdMode'])
+
         ret["cancelLastOrder"] = cancelLastOrder(_params['symbol'], lastOrdId)
-        ret["closedPosition"] = closeAllPosition(_params['symbol'], _params['tdMode'])
+        # ret["closedPosition"] = closeAllPosition(_params['symbol'], _params['tdMode'])
         # 开仓
         sz = amountConvertToSZ(_params['symbol'], _params['amount'], _params['price'], _params['ordType'])
         if sz < 1:
@@ -310,36 +314,6 @@ def order():
         else:
             ret["createOrderRes"], ret['msg'] = createOrder(_params['symbol'], sz, _params['price'], _params['side'],
                                                 _params['ordType'], _params['tdMode'])
-
-            # 获取标记价格
-            mark_price = exchange.publicGetPublicMarkPrice(params={"instId": symbol, "instType": "SWAP"})['data'][0]['markPx']
-
-            stop_loss_percent = float(_params['slPercent'])
-
-            _params['price'] = mark_price
-            # 挂上止损单
-            stop_side = "buy"  # 当前做空，止损单挂多单
-            stop_loss_price = float(_params['price']) * (1 + stop_loss_percent)
-            if _params["side"].lower() == "buy":
-                stop_side = "sell"  # 当前做多，止损单挂空单
-                stop_loss_price = float(_params['price']) * (1 - stop_loss_percent)
-
-            pricePrecision = getPricePrecision(_params['price'])
-            stop_loss_price = round(stop_loss_price, pricePrecision)
-
-            logging.info(f'create stop loss order|symbol:{symbol}|stop_loss_price: {stop_loss_price}|stop '
-                         f'side: {stop_side}|sz: {sz}')
-
-            privatePostTradeOrderAlgoParams = {
-                "instId": symbol,
-                "tdMode": tdMode,
-                "side": stop_side,
-                "ordType": "conditional",
-                "sz": sz,
-                "slTriggerPx": stop_loss_price,
-                "slOrdPx": stop_loss_price
-            }
-            exchange.privatePostTradeOrderAlgo(params=privatePostTradeOrderAlgoParams)
 
     # 平仓
     elif _params['side'].lower() in ["close"]:
