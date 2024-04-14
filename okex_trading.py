@@ -27,7 +27,7 @@ elif os.path.exists('./config.ini'):
     config['trading']['enable_stop_loss'] = config['trading']['enable_stop_loss'].lower() == "true"
     config['trading']['enable_stop_gain'] = config['trading']['enable_stop_gain'].lower() == "true"
 else:
-    print("The configuration file config.json does not exist and the program is about to exit.")
+    logging.info("The configuration file config.json does not exist and the program is about to exit.")
     exit()
 
 # 服务配置
@@ -58,8 +58,8 @@ accountConfig = {
 # 格式化日志
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(message)s"
 DATE_FORMAT = "%Y/%m/%d/ %H:%M:%S %p"
-# logging.basicConfig(filename='bot.log', level=print, format=LOG_FORMAT, datefmt=DATE_FORMAT)
-# logging.FileHandler(filename='bot.log')
+logging.basicConfig(filename='bot.log', format=LOG_FORMAT, datefmt=DATE_FORMAT)
+logging.FileHandler(filename='bot.log')
 
 # CCXT初始化
 exchange = ccxt.okex5(config={
@@ -99,7 +99,7 @@ def sltpThread(oid, side, symbol, sz, tdMode, config):
     while True:
         try:
             privateGetTradeOrderRes = exchange.privateGetTradeOrder(params={"ordId": oid,"instId": symbol})
-            print(privateGetTradeOrderRes)
+            logging.info(privateGetTradeOrderRes)
             if privateGetTradeOrderRes['data'][0]['state'] == "filled":
                 avgPx = float(privateGetTradeOrderRes['data'][0]['avgPx'])
                 direction = -1 if side.lower() == "buy" else 1
@@ -111,7 +111,7 @@ def sltpThread(oid, side, symbol, sz, tdMode, config):
                 privatePostTradeOrderAlgoParams['slOrdPx'] = '%.12f' % slOrdPx
                 privatePostTradeOrderAlgoParams['tpTriggerPx'] = '%.12f' % tpTriggerPx
                 privatePostTradeOrderAlgoParams['tpOrdPx'] = '%.12f' % tpOrdPx
-                print("订单{oid}设置止盈止损...".format(oid=oid))
+                logging.info("订单{oid}设置止盈止损...".format(oid=oid))
                 privatePostTradeOrderAlgoRes = exchange.privatePostTradeOrderAlgo(params=privatePostTradeOrderAlgoParams)
                 if 'code' in privatePostTradeOrderAlgoRes and privatePostTradeOrderAlgoRes['code'] == '0':
                     lastAlgoOrdId = privatePostTradeOrderAlgoRes['data'][0]['algoId']
@@ -122,9 +122,9 @@ def sltpThread(oid, side, symbol, sz, tdMode, config):
                 lastOrdType = None
                 break
         except Exception as e:
-            print(e)
+            logging.info(e)
         time.sleep(1)
-    print("订单{oid}止盈止损单挂单结束".format(oid=oid))
+    logging.info("订单{oid}止盈止损单挂单结束".format(oid=oid))
 
 
 
@@ -133,10 +133,10 @@ def setLever(_symbol, _tdMode, _lever):
     try:
         privatePostAccountSetLeverageRes = exchange.privatePostAccountSetLeverage(
             params={"instId": _symbol, "mgnMode": _tdMode, "lever": _lever})
-        # print(json.dumps(privatePostAccountSetLeverageRes))
+        # logging.info(json.dumps(privatePostAccountSetLeverageRes))
         return True
     except Exception as e:
-        # print("privatePostTradeCancelBatchOrders " + str(e))
+        # logging.info("privatePostTradeCancelBatchOrders " + str(e))
         return False
 
 # 取消止盈止损订单
@@ -146,10 +146,10 @@ def setLever(_symbol, _tdMode, _lever):
 def cancelLastOrder(_symbol, _lastOrdId):
     try:
         res = exchange.privatePostTradeCancelOrder(params={"instId": _symbol, "ordId": _lastOrdId})
-        # print("privatePostTradeCancelBatchOrders " + json.dumps(res))
+        # logging.info("privatePostTradeCancelBatchOrders " + json.dumps(res))
         return True
     except Exception as e:
-        # print("privatePostTradeCancelBatchOrders " + str(e))
+        # logging.info("privatePostTradeCancelBatchOrders " + str(e))
         return False
 
 
@@ -157,10 +157,10 @@ def cancelLastOrder(_symbol, _lastOrdId):
 def closeAllPosition(_symbol, _tdMode):
     try:
         res = exchange.privatePostTradeClosePosition(params={"instId": _symbol, "mgnMode": _tdMode})
-        # print("privatePostTradeClosePosition " + json.dumps(res))
+        # logging.info("privatePostTradeClosePosition " + json.dumps(res))
         return True
     except Exception as e:
-        print("privatePostTradeClosePosition " + str(e))
+        logging.info("privatePostTradeClosePosition " + str(e))
         return False
 
 # 开仓
@@ -177,10 +177,10 @@ def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode, enable_stop_
             try:
                 _thread.start_new_thread(sltpThread, (lastOrdId, _side, _symbol, _amount, _tdMode, config))
             except:
-                print("Error: unable to run sltpThread")
+                logging.info("Error: unable to run sltpThread")
         return True, "create order successfully"
     except Exception as e:
-        print("createOrder " + str(e))
+        logging.info("createOrder " + str(e))
         return False, str(e)
 
 
@@ -195,7 +195,7 @@ def initInstruments():
             swapInstruments = swapInstrumentsRes['data']
             c = c + 1
     except Exception as e:
-        print("publicGetPublicInstruments " + str(e))
+        logging.info("publicGetPublicInstruments " + str(e))
     try:
         # 获取交割合约基础信息
         futureInstrumentsRes = exchange.publicGetPublicInstruments(params={"instType": "FUTURES"})
@@ -204,7 +204,7 @@ def initInstruments():
             futureInstruments = futureInstrumentsRes['data']
             c = c + 1
     except Exception as e:
-        print("publicGetPublicInstruments " + str(e))
+        logging.info("publicGetPublicInstruments " + str(e))
     return c >= 2
 
 # 将 amount 币数转换为合约张数
@@ -253,12 +253,12 @@ app = Flask(__name__)
 
 @app.before_request
 def before_req():
-    print(request.json)
+    logging.info(request.json)
     if request.json is None:
         abort(400)
     if request.remote_addr not in ipWhiteList:
-        print(f'ipWhiteList: {ipWhiteList}')
-        print(f'ip is not in ipWhiteList: {request.remote_addr}')
+        logging.info(f'ipWhiteList: {ipWhiteList}')
+        logging.info(f'ip is not in ipWhiteList: {request.remote_addr}')
         abort(403)
     # if "apiSec" not in request.json or request.json["apiSec"] != apiSec:
     #     abort(401)
@@ -302,6 +302,7 @@ def order():
 
         pos_res = exchange.privateGetAccountPositions(params={"instId": _params['symbol']})
         pos_side = pos_res['data'][0]['posSide']
+        logging.info(pos_res)
         if (_params['side'].lower() == "sell" and pos_side == "long") or (_params['side'].lower() == "buy" and pos_side == "short"):
             ret["closedPosition"] = closeAllPosition(_params['symbol'], _params['tdMode'])
 
@@ -336,19 +337,19 @@ def order():
 if __name__ == '__main__':
     try:
         ip = json.load(urllib.request.urlopen('http://httpbin.org/ip'))['origin']
-        print(
+        logging.info(
             "It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        print(
+        logging.info(
             "Please be sure to modify apiSec in config.ini and modify it to a complex key.".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        print(
+        logging.info(
             "The system interface service is about to start! Service listening address:{listenHost}:{listenPort}".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        print(
+        logging.info(
             "interface addr: http://{ip}:{listenPort}/order".format(
                 listenPort=listenPort, listenHost=listenHost, ip=ip))
-        print("It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background")
+        logging.info("It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background")
 
         # 初始化交易币对基础信息
         if initInstruments() is False:
@@ -357,5 +358,5 @@ if __name__ == '__main__':
         # 启动服务
         app.run(debug=debugMode, port=listenPort, host=listenHost)
     except Exception as e:
-        print(e)
+        logging.info(e)
         pass
