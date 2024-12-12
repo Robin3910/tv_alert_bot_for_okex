@@ -1,0 +1,404 @@
+2024/12/12/ 12:26:55 PM - INFO - {'code': '0', 'data': [{'adjEq': '', 'borrowFroz': '', 'details': [{'accAvgPx': '101478.60537537535', 'availBal': '3.00098596305', 'availEq': '3.00098596305', 'borrowFroz': '', 'cashBal': '3.00098596305', 'ccy': 'BTC', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '296638.7956000312', 'eq': '3.00098596305', 'eqUsd': '302692.64857146045', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '101377.12677', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '0.0009859630500002', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '-0.5055296499659618', 'spotUplRatio': '-0.0050576178901111', 'stgyEq': '0', 'totalPnl': '-0.6055838052316176', 'totalPnlRatio': '-0.0060525602722208', 'twap': '0', 'uTime': '1733974040268', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '9000', 'availEq': '9000', 'borrowFroz': '', 'cashBal': '9000', 'ccy': 'TUSD', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '0', 'eq': '9000', 'eqUsd': '90032.40000000001', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1651306734794', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '15', 'availEq': '15', 'borrowFroz': '', 'cashBal': '15', 'ccy': 'ETH', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '57624.441', 'eq': '15', 'eqUsd': '58800.450000000004', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1651306734794', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '1500', 'availEq': '1500', 'borrowFroz': '', 'cashBal': '1500', 'ccy': 'UNI', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '23266.2', 'eq': '1500', 'eqUsd': '27372', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1651306734794', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '300', 'availEq': '300', 'borrowFroz': '', 'cashBal': '300', 'ccy': 'OKB', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '15321.69', 'eq': '300', 'eqUsd': '17024.1', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1651306734742', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '9000', 'availEq': '9000', 'borrowFroz': '', 'cashBal': '9000', 'ccy': 'USDK', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '0', 'eq': '9000', 'eqUsd': '9000', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1651306734742', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '9000', 'availEq': '9000', 'borrowFroz': '', 'cashBal': '9000', 'ccy': 'USDC', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '8818.236', 'eq': '9000', 'eqUsd': '8998.2', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1651306734794', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '9000', 'availEq': '9000', 'borrowFroz': '', 'cashBal': '9000', 'ccy': 'PAX', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '0', 'eq': '9000', 'eqUsd': '8991', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1651306734742', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '8898.71920827', 'availEq': '8898.71920827', 'borrowFroz': '', 'cashBal': '8898.71920827', 'ccy': 'USDT', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '8901.922747184977', 'eq': '8898.71920827', 'eqUsd': '8901.922747184977', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1733974689217', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '30000', 'availEq': '30000', 'borrowFroz': '', 'cashBal': '30000', 'ccy': 'TRX', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '7394.999999999999', 'eq': '30000', 'eqUsd': '8700', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1651306734794', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '30', 'availEq': '30', 'borrowFroz': '', 'cashBal': '30', 'ccy': 'LTC', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '3458.475', 'eq': '30', 'eqUsd': '3640.5', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1651306734794', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '3000', 'availEq': '3000', 'borrowFroz': '', 'cashBal': '3000', 'ccy': 'ADA', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '3106.0800000000004', 'eq': '3000', 'eqUsd': '3451.2000000000003', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1651306734794', 'upl': '0', 'uplLiab': ''}, {'accAvgPx': '', 'availBal': '300', 'availEq': '300', 'borrowFroz': '', 'cashBal': '300', 'ccy': 'JFI', 'clSpotInUseAmt': '', 'crossLiab': '', 'disEq': '0', 'eq': '300', 'eqUsd': '29.994', 'fixedBal': '0', 'frozenBal': '0', 'imr': '0', 'interest': '', 'isoEq': '0', 'isoLiab': '', 'isoUpl': '0', 'liab': '', 'maxLoan': '', 'maxSpotInUse': '', 'mgnRatio': '', 'mmr': '0', 'notionalLever': '0', 'openAvgPx': '', 'ordFrozen': '0', 'rewardBal': '0', 'smtSyncEq': '0', 'spotBal': '', 'spotCopyTradingEq': '0', 'spotInUseAmt': '', 'spotIsoBal': '0', 'spotUpl': '', 'spotUplRatio': '', 'stgyEq': '0', 'totalPnl': '', 'totalPnlRatio': '', 'twap': '0', 'uTime': '1651306734742', 'upl': '0', 'uplLiab': ''}], 'imr': '', 'isoEq': '0', 'mgnRatio': '', 'mmr': '', 'notionalUsd': '', 'ordFroz': '', 'totalEq': '547634.4153186454', 'uTime': '1733977615394', 'upl': ''}], 'msg': ''}
+2024/12/12/ 14:55:55 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 14:55:55 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 14:55:55 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 14:55:55 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 14:55:55 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 14:56:00 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 14:56:00 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 14:56:00 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 14:56:00 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 14:56:00 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 14:56:55 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '10064.43876212', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'false', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 14:56:58 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '10064.43876212', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'false', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 14:57:27 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '10064.43876212', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'false', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:00:46 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:00:46 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:00:46 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:00:46 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:00:46 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:01:05 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:01:05 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:01:05 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:01:05 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:01:05 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:02:21 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:02:21 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:02:21 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:02:21 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:02:21 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:02:23 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:02:23 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:02:23 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:02:23 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:02:23 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:02:31 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '10064.43876212', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'false', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:02:58 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:02:58 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:02:58 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:02:58 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:02:58 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:03:03 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '10064.43876212', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'false', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:03:04 PM - INFO - 使用全部资金，开仓量: 0.08839185525915852
+2024/12/12/ 15:03:21 PM - INFO - 更新杠杆值成功: BTC-USDT-SWAP = 1
+2024/12/12/ 15:03:35 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 15:05:37 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:05:37 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:05:37 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:05:37 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:05:37 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:05:58 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:05:58 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:05:58 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:05:58 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:05:58 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:06:00 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '10064.43876212', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'true', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:06:00 PM - INFO - 使用全部资金，开仓量: 0.08839185525915852
+2024/12/12/ 15:06:52 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 15:07:55 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:07:55 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:07:55 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:07:55 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:07:55 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:07:59 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '10064.43876212', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'true', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:07:59 PM - INFO - 使用全部资金，开仓量: 0.08839185525915852
+2024/12/12/ 15:08:04 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 15:12:54 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43876212', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'true', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:12:54 PM - INFO - 使用全部资金，开仓量: 0.08839185525915852
+2024/12/12/ 15:12:54 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 15:12:55 PM - INFO - {'code': '1', 'data': [{'clOrdId': '', 'ordId': '', 'sCode': '51000', 'sMsg': 'Parameter ordId error', 'ts': '1733987575178'}], 'inTime': '1733987575178762', 'msg': 'All operations failed', 'outTime': '1733987575178941'}
+2024/12/12/ 15:13:13 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43876212', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'true', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:13:14 PM - INFO - 使用全部资金，开仓量: 0.00838669414032608
+2024/12/12/ 15:13:14 PM - INFO - pre pos side: net|pos amount: 8
+2024/12/12/ 15:13:14 PM - INFO - {'code': '1', 'data': [{'clOrdId': '', 'ordId': '2063100136893059072', 'sCode': '51400', 'sMsg': 'Order cancellation failed as the order has been filled, canceled or does not exist', 'ts': '1733987594838'}], 'inTime': '1733987594837664', 'msg': 'All operations failed', 'outTime': '1733987594839076'}
+2024/12/12/ 15:13:29 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:13:29 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:13:29 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:13:29 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:13:29 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:13:31 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:13:31 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:13:31 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:13:31 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:13:31 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:13:36 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43876212', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'true', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:13:36 PM - INFO - 使用全部资金，开仓量: 0.00838669414032609
+2024/12/12/ 15:13:36 PM - INFO - pre pos side: net|pos amount: 8
+2024/12/12/ 15:14:05 PM - INFO - {'code': '1', 'data': [{'clOrdId': '', 'ordId': '', 'sCode': '51000', 'sMsg': 'Parameter ordId error', 'ts': '1733987645851'}], 'inTime': '1733987645851436', 'msg': 'All operations failed', 'outTime': '1733987645851615'}
+2024/12/12/ 15:14:08 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:14:08 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:14:08 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:14:08 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:14:08 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:14:15 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:14:15 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:14:15 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:14:15 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:14:15 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:14:18 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:14:18 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:14:18 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:14:18 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:14:18 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:14:26 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'true', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:14:26 PM - INFO - 使用全部资金，开仓量: 0.00838669414032608
+2024/12/12/ 15:14:26 PM - INFO - pre pos side: net|pos amount: 8
+2024/12/12/ 15:16:20 PM - INFO - {'code': '1', 'data': [{'clOrdId': '', 'ordId': '', 'sCode': '51000', 'sMsg': 'Parameter ordId error', 'ts': '1733987780440'}], 'inTime': '1733987780439927', 'msg': 'All operations failed', 'outTime': '1733987780440076'}
+2024/12/12/ 15:18:19 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:18:19 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:18:19 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:18:19 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:18:19 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:18:21 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:18:21 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:18:21 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:18:21 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:18:21 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:18:24 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'true', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:18:24 PM - INFO - 使用全部资金，开仓量: 0.00838669414032608
+2024/12/12/ 15:18:24 PM - INFO - pre pos side: net|pos amount: 8
+2024/12/12/ 15:18:24 PM - INFO - {'code': '1', 'data': [{'clOrdId': '', 'ordId': '', 'sCode': '51000', 'sMsg': 'Parameter ordId error', 'ts': '1733987904820'}], 'inTime': '1733987904819857', 'msg': 'All operations failed', 'outTime': '1733987904820041'}
+2024/12/12/ 15:19:38 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:19:38 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:19:38 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:19:38 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:19:38 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:19:48 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:19:48 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:19:48 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:19:48 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:19:48 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:20:06 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'true', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:22:55 PM - INFO - 使用全部资金，开仓量: 0.00838669414032608
+2024/12/12/ 15:22:55 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 15:22:56 PM - INFO - {'code': '1', 'data': [{'clOrdId': '', 'ordId': '', 'sCode': '51000', 'sMsg': 'Parameter ordId error', 'ts': '1733988176073'}], 'inTime': '1733988176073379', 'msg': 'All operations failed', 'outTime': '1733988176073553'}
+2024/12/12/ 15:23:05 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:23:05 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:23:05 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:23:05 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:23:05 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:23:08 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:23:08 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:23:08 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:23:08 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:23:08 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:23:12 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '10000', 'use_all_money': 'true', 'leverage': '1', 'order_type': 'market', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:23:12 PM - INFO - 使用全部资金，开仓量: 0.08840378487083793
+2024/12/12/ 15:23:12 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 15:23:13 PM - INFO - {'code': '1', 'data': [{'clOrdId': '', 'ordId': '', 'sCode': '51000', 'sMsg': 'Parameter ordId error', 'ts': '1733988193382'}], 'inTime': '1733988193381902', 'msg': 'All operations failed', 'outTime': '1733988193382080'}
+2024/12/12/ 15:29:50 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '1000', 'use_all_money': 'false', 'leverage': '1', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:29:51 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 15:29:51 PM - INFO - {'code': '1', 'data': [{'clOrdId': '', 'ordId': '2063121656222715904', 'sCode': '51400', 'sMsg': 'Order cancellation failed as the order has been filled, canceled or does not exist', 'ts': '1733988591354'}], 'inTime': '1733988591353735', 'msg': 'All operations failed', 'outTime': '1733988591355199'}
+2024/12/12/ 15:31:26 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '1000', 'use_all_money': 'false', 'leverage': '1', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:31:27 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 15:31:27 PM - INFO - {'code': '1', 'data': [{'clOrdId': '', 'ordId': '', 'sCode': '51003', 'sMsg': 'Either client order ID or order ID is required', 'ts': '1733988687503'}], 'inTime': '1733988687503420', 'msg': 'All operations failed', 'outTime': '1733988687503541'}
+2024/12/12/ 15:33:08 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:33:08 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:33:08 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:33:08 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:33:08 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:33:17 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:33:17 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:33:17 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:33:17 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:33:17 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:33:23 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:33:23 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:33:23 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:33:23 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:33:23 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:33:37 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.099309859', 'action': 'buy', 'price': '100673.52', 'total_usdt': '1000', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:33:37 PM - INFO - 更新杠杆值成功: BTC-USDT-SWAP = 10
+2024/12/12/ 15:33:37 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 15:33:38 PM - INFO - {'code': '1', 'data': [{'clOrdId': '', 'ordId': '', 'sCode': '51000', 'sMsg': 'Parameter ordId error', 'ts': '1733988818053'}], 'inTime': '1733988818053413', 'msg': 'All operations failed', 'outTime': '1733988818053573'}
+2024/12/12/ 15:35:05 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'buy', 'price': '100673.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 15:35:06 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 15:35:06 PM - INFO - {'code': '0', 'data': [{'clOrdId': '', 'ordId': '2063143468046356480', 'sCode': '0', 'sMsg': '', 'ts': '1733988906530'}], 'inTime': '1733988906529887', 'msg': '', 'outTime': '1733988906532349'}
+2024/12/12/ 15:58:06 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:58:06 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:58:06 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:58:06 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:58:06 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:58:28 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:58:28 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:58:28 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:58:28 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:58:28 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:59:46 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:59:46 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:59:46 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:59:46 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:59:46 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:59:52 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:59:52 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:59:52 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:59:52 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:59:52 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 15:59:54 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 15:59:54 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 15:59:54 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 15:59:54 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 15:59:54 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 16:01:23 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 16:01:23 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 16:01:23 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 16:01:23 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 16:01:23 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 16:43:00 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 16:43:00 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 16:43:00 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 16:43:00 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 16:43:00 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 16:43:02 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 16:43:02 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 16:43:02 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 16:43:02 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 16:43:02 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 16:44:10 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'buy', 'price': '100673.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 16:44:10 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 16:44:11 PM - INFO - 1|All operations failed
+2024/12/12/ 16:45:37 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 16:45:37 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 16:45:37 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 16:45:37 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 16:45:37 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 16:45:39 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 16:45:39 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 16:45:39 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 16:45:39 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 16:45:39 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 16:45:55 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'buy', 'price': '100939.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.005', 'entry_limit': '0.02'}
+2024/12/12/ 16:45:55 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 16:45:56 PM - INFO - 1|All operations failed
+2024/12/12/ 16:48:18 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'buy', 'price': '100939.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 16:48:19 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 16:48:19 PM - INFO - 1|All operations failed
+2024/12/12/ 16:48:56 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'buy', 'price': '101011.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 16:48:56 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 16:48:57 PM - INFO - 1|All operations failed
+2024/12/12/ 16:55:28 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'sell', 'price': '101011.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 16:55:29 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 16:55:29 PM - INFO - 1|All operations failed
+2024/12/12/ 16:57:51 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 16:57:51 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 16:57:51 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 16:57:51 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 16:57:51 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 16:58:01 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 16:58:01 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 16:58:01 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 16:58:01 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 16:58:01 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 16:58:32 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 16:58:32 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 16:58:32 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 16:58:32 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 16:58:32 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 16:58:32 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'sell', 'price': '100975.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '5', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 16:58:33 PM - INFO - 更新杠杆值成功: BTC-USDT-SWAP = 5
+2024/12/12/ 16:58:33 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 16:58:33 PM - INFO - cancelLastOrder 1|All operations failed
+2024/12/12/ 16:59:04 PM - INFO - 当前盈利 0.00%，触发跟踪止盈
+2024/12/12/ 16:59:05 PM - INFO - 51003|Either ordId or clOrdId is required
+2024/12/12/ 16:59:18 PM - INFO - 当前盈利 0.03%，触发跟踪止盈
+2024/12/12/ 16:59:18 PM - INFO - 51003|Either ordId or clOrdId is required
+2024/12/12/ 16:59:52 PM - INFO - 当前盈利 0.00%，触发跟踪止盈
+2024/12/12/ 16:59:52 PM - INFO - 51003|Either ordId or clOrdId is required
+2024/12/12/ 16:59:54 PM - INFO - 当前盈利 0.01%，触发跟踪止盈
+2024/12/12/ 16:59:54 PM - INFO - 51003|Either ordId or clOrdId is required
+2024/12/12/ 17:00:03 PM - INFO - 当前盈利 0.05%，触发跟踪止盈
+2024/12/12/ 17:00:05 PM - INFO - 当前盈利 0.05%，触发跟踪止盈
+2024/12/12/ 17:00:33 PM - INFO - 51003|Either ordId or clOrdId is required
+2024/12/12/ 17:15:23 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 17:15:23 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 17:15:23 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 17:15:23 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 17:15:23 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 17:15:26 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 17:15:26 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 17:15:26 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 17:15:26 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 17:15:26 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 17:17:13 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'sell', 'price': '100975.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '5', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 17:17:13 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 17:17:13 PM - INFO - cancelLastOrder 1|All operations failed
+2024/12/12/ 17:17:32 PM - INFO - 当前盈利 0.02%，触发跟踪止盈
+2024/12/12/ 17:21:49 PM - INFO - get_order 51603|Order does not exist
+2024/12/12/ 17:21:57 PM - INFO - 当前盈利 0.01%，触发跟踪止盈
+2024/12/12/ 17:21:58 PM - INFO - get_order 51603|Order does not exist
+2024/12/12/ 17:27:26 PM - INFO - 当前盈利 0.16%，触发跟踪止盈
+2024/12/12/ 17:27:34 PM - INFO - get_order 51603|Order does not exist
+2024/12/12/ 17:40:47 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 17:40:47 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 17:40:47 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 17:40:47 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 17:40:47 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 17:40:50 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 17:40:50 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 17:40:50 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 17:40:50 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 17:40:50 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 17:41:29 PM - INFO - 当前盈利 0.65%，触发跟踪止盈
+2024/12/12/ 17:41:50 PM - INFO - get_order 51603|Order does not exist
+2024/12/12/ 17:42:01 PM - INFO - 当前盈利 0.79%，触发跟踪止盈
+2024/12/12/ 17:42:04 PM - INFO - get_order 51603|Order does not exist
+2024/12/12/ 17:42:25 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'sell', 'price': '100875.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 17:42:25 PM - INFO - 更新杠杆值成功: BTC-USDT-SWAP = 10
+2024/12/12/ 17:42:25 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 17:42:26 PM - INFO - cancelLastOrder 1|All operations failed
+2024/12/12/ 17:42:50 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'sell', 'price': '100815.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 17:42:51 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 17:42:51 PM - INFO - cancelLastOrder 1|All operations failed
+2024/12/12/ 17:43:03 PM - INFO - 当前盈利 0.66%，触发跟踪止盈
+2024/12/12/ 17:43:05 PM - INFO - get_order 51603|Order does not exist
+2024/12/12/ 17:45:30 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 17:45:30 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 17:45:30 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 17:45:30 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 17:45:30 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 17:50:23 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 17:50:23 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 17:50:23 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 17:50:23 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 17:50:23 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 17:50:26 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 17:50:26 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 17:50:26 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 17:50:26 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 17:50:26 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 17:50:29 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'sell', 'price': '100815.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 17:50:29 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 17:50:29 PM - INFO - cancelLastOrder 1|All operations failed
+2024/12/12/ 17:50:49 PM - INFO - 当前盈利 0.45%，触发跟踪止盈
+2024/12/12/ 17:58:28 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 17:58:28 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 17:58:28 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 17:58:28 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 17:58:28 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 17:58:31 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 17:58:31 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 17:58:31 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 17:58:31 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 17:58:31 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 17:58:34 PM - INFO - 当前盈利 0.93%，触发跟踪止盈
+2024/12/12/ 17:59:32 PM - INFO - 修改订单成功: 1733997029
+2024/12/12/ 18:05:32 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 18:05:32 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 18:05:32 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 18:05:32 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 18:05:32 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 18:05:34 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 18:05:34 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 18:05:34 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 18:05:34 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 18:05:34 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 18:05:39 PM - INFO - 当前盈利 3.73%，触发跟踪止盈
+2024/12/12/ 18:05:43 PM - INFO - 修改订单成功: 1733997029
+2024/12/12/ 18:05:43 PM - INFO - 已更新symbol_info,标记BTC-USDT-SWAP订单已修改
+2024/12/12/ 18:05:47 PM - INFO - 当前盈利 3.74%，触发跟踪止盈
+2024/12/12/ 18:05:48 PM - INFO - 修改订单成功: 1733997029
+2024/12/12/ 18:05:48 PM - INFO - 已更新symbol_info,标记BTC-USDT-SWAP订单已修改
+2024/12/12/ 18:06:18 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'buy', 'price': '100615.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 18:06:19 PM - INFO - pre pos side: net|pos amount: -1
+2024/12/12/ 18:06:20 PM - INFO - cancelLastOrder 1|All operations failed
+2024/12/12/ 18:06:20 PM - INFO - 当前盈利 0.03%，触发跟踪止盈
+2024/12/12/ 18:06:20 PM - INFO - amend_order 1|
+2024/12/12/ 18:06:25 PM - INFO - 当前盈利 0.09%，触发跟踪止盈
+2024/12/12/ 18:06:26 PM - INFO - amend_order 1|
+2024/12/12/ 18:06:31 PM - INFO - 当前盈利 0.03%，触发跟踪止盈
+2024/12/12/ 18:06:32 PM - INFO - 修改订单成功: 1733997980
+2024/12/12/ 18:06:32 PM - INFO - 已更新symbol_info,标记BTC-USDT-SWAP订单已修改
+2024/12/12/ 18:07:00 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'buy', 'price': '100615.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 18:07:00 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 18:07:01 PM - INFO - cancelLastOrder 1|All operations failed
+2024/12/12/ 18:09:19 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'buy', 'price': '100615.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 18:09:19 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 18:09:20 PM - INFO - cancelLastOrder 1|All operations failed
+2024/12/12/ 18:09:25 PM - INFO - 当前盈利 0.11%，触发跟踪止盈
+2024/12/12/ 18:09:30 PM - INFO - 当前盈利 0.05%，触发跟踪止盈
+2024/12/12/ 18:10:07 PM - INFO - amend_order 1|
+2024/12/12/ 18:10:49 PM - INFO - 当前盈利 0.35%，触发跟踪止盈
+2024/12/12/ 18:10:50 PM - INFO - 修改订单成功: 1733998160
+2024/12/12/ 18:10:50 PM - INFO - 已更新symbol_info,标记BTC-USDT-SWAP订单已修改
+2024/12/12/ 18:11:40 PM - INFO - amend_order 1|
+2024/12/12/ 18:11:43 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 18:11:43 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 18:11:43 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 18:11:43 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 18:11:43 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 18:12:13 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 18:12:13 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 18:12:13 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 18:12:13 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 18:12:13 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 18:12:16 PM - INFO - It is recommended to run it on a server with an independent IP. If it is run on a personal computer, it requires FRP intranet penetration and affects the software efficiency.
+2024/12/12/ 18:12:16 PM - INFO - Please be sure to modify apiSec in config.ini and modify it to a complex key.
+2024/12/12/ 18:12:16 PM - INFO - The system interface service is about to start! Service listening address:0.0.0.0:8088
+2024/12/12/ 18:12:16 PM - INFO - interface addr: http://172.104.186.186:8088/order
+2024/12/12/ 18:12:16 PM - INFO - It is recommended to use nohup python3 okex_trading.py & to run the program into the linux background
+2024/12/12/ 18:12:30 PM - INFO - {'symbol': 'BINANCE:BTCUSDT', 'ema': '100664.43', 'quantity': '0.01', 'action': 'sell', 'price': '100515.52', 'total_usdt': '1200', 'use_all_money': 'false', 'leverage': '10', 'order_type': 'limit', 'tp_percent': '0.1', 'sl_percent': '0.1', 'trail_profit': '0.000001', 'entry_limit': '0.02'}
+2024/12/12/ 18:12:30 PM - INFO - pre pos side: net|pos amount: 0
+2024/12/12/ 18:12:31 PM - INFO - cancelLastOrder 1|All operations failed
+2024/12/12/ 18:12:38 PM - INFO - 当前盈利 0.03%，触发跟踪止盈
+2024/12/12/ 18:12:39 PM - INFO - 修改订单成功: 1733998351
+2024/12/12/ 18:12:39 PM - INFO - 已更新symbol_info,标记BTC-USDT-SWAP订单已修改
