@@ -1,5 +1,5 @@
 flask>=2.0.0
 ccxt>=4.0.0
 requests>=2.25.0
-python-okx>=0.4.0
+python-okx
 configparser>=5.0.0 
