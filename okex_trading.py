@@ -424,9 +424,14 @@ def order():
                 logger.info(f"更新杠杆值成功: {symbol_key} = {_params['leverage']}")
         
     pos_res = accountAPI.get_positions(instId=symbol)
-    pos_side = pos_res['data'][0]['posSide']
-    pos_amount = int(pos_res['data'][0]['pos'])
-    logger.info("pre pos side: " + pos_side + "|pos amount: " + str(pos_amount))
+    pos_side = ""
+    pos_amount = 0
+    if pos_res['code'] == '0' and len(pos_res['data']) > 0:
+        pos_side = pos_res['data'][0]['posSide']
+        pos_amount = int(pos_res['data'][0]['pos'])
+        logger.info(f"{symbol}|pre pos side: " + pos_side + "|pos amount: " + str(pos_amount))
+    else:
+        logger.info(f"{symbol}|当前仓位不存在")
     # 注意：开单的时候会先把原来的仓位平掉，然后再把你的多单挂上
     global lastOrdType
     if action.lower() in ["buy", "sell"]:
