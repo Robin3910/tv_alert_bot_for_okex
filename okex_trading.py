@@ -250,12 +250,13 @@ def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode, tp, sl):
         global lastOrdId,config
         if res['code'] == '0':
             lastOrdId = res['data'][0]['ordId']
+            logger.info(f"{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}|create order successfully")
             return attachAlgoOrds[0]['attachAlgoClOrdId'], "create order successfully"
         else:
-            logger.info("createOrder " + res["code"] + "|" + res['data'][0]['sMsg'])
+            logger.info(f"{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}|create order failed")
             return "", res['data'][0]['sMsg']
     except Exception as e:
-        logger.info("createOrder " + str(e))
+        logger.info(f"{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}|create order failed")
         return False, str(e)
 
 
