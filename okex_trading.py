@@ -226,14 +226,22 @@ def closeAllPosition(_symbol, _tdMode):
         return False
 
 # 开仓
-def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode, tp, sl):
+def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode, tp, sl, tp_sl_order_type):
     try:
+        # 止盈止损如果为市价，则设置为-1
+        if tp_sl_order_type.upper() == "MARKET":
+            tpOrdPx = -1
+            slOrdPx = -1
+        else:
+            # 止盈止损如果为限价单，则为限价单的价格
+            tpOrdPx = tp
+            slOrdPx = sl
         # 挂单
         attachAlgoOrds = [{
             "tpTriggerPx": tp,
-            "tpOrdPx": -1,
+            "tpOrdPx": tpOrdPx,
             "slTriggerPx": sl,
-            "slOrdPx": -1,
+            "slOrdPx": slOrdPx,
             'attachAlgoClOrdId': str(int(time.time()))
         }]
         # 现货模式限价单
@@ -360,7 +368,9 @@ def ping():
 #     "tp_percent": "0.1",
 #     "sl_percent": "0.1",
 #     "trail_profit": "0.005",
-#     "entry_limit": "0.02"
+#     "entry_limit": "0.02",
+#     "trail_profit_slip": "0.001",
+#     "tp_sl_order_type": "limit"
 # }
 @app.route('/order', methods=['POST'])
 def order():
@@ -390,6 +400,8 @@ def order():
     quantity = float(_params['quantity'])
     order_type = _params['order_type']
     leverage = _params['leverage']
+    tp_sl_order_type = _params['tp_sl_order_type']
+    trail_profit_slip = float(_params['trail_profit_slip'])
     use_all_money = True if _params['use_all_money'] == "true" else False
 
     # 如果使用全部资金，则使用账户余额来计算开仓量
@@ -414,7 +426,9 @@ def order():
                 'trail_profit': float(_params['trail_profit']),
                 'tp_price': 0,
                 'sl_price': 0,
-                'attach_oid': 0
+                'attach_oid': 0,
+                'tp_sl_order_type': tp_sl_order_type,
+                'trail_profit_slip': trail_profit_slip
             }
         
         # 更新杠杆值
@@ -425,14 +439,15 @@ def order():
                 logger.info(f"更新杠杆值成功: {symbol_key} = {_params['leverage']}")
         
     pos_res = accountAPI.get_positions(instId=symbol)
-    pos_side = ""
     pos_amount = 0
+    pos_side = ""
     if pos_res['code'] == '0' and len(pos_res['data']) > 0:
         pos_side = pos_res['data'][0]['posSide']
         pos_amount = int(pos_res['data'][0]['pos'])
-        logger.info(f"{symbol}|pre pos side: " + pos_side + "|pos amount: " + str(pos_amount))
+        logger.info("pre pos side: " + pos_side + "|pos amount: " + str(pos_amount))
     else:
-        logger.info(f"{symbol}|当前仓位不存在")
+        logger.info(f"当前无仓位:{symbol}| {pos_res['code']} | {pos_res['msg']}")
+
     # 注意：开单的时候会先把原来的仓位平掉，然后再把你的多单挂上
     global lastOrdType
     if action.lower() in ["buy", "sell"]:
@@ -465,7 +480,7 @@ def order():
             else:
                 tp = price * (1 - tp_percent)
                 sl = price * (1 + sl_percent)
-            attach_oid, ret['msg'] = createOrder(symbol, sz, price, action, order_type, tdMode, tp, sl)
+            attach_oid, ret['msg'] = createOrder(symbol, sz, price, action, order_type, tdMode, tp, sl, tp_sl_order_type)
             
             # 如果订单创建成功,更新开仓价格
             if attach_oid:
@@ -509,7 +524,7 @@ def trailing_stop_monitor():
                     # 如果有持仓
                     if pos_amount != 0:
                         entry_price = float(position['avgPx'])
-                        uplRatio = float(position['uplRatio'])
+                        uplRatio = float(position['uplRatio']) / int(symbol_info[symbol]['leverage'])
                         
                         if uplRatio > symbol_info[symbol]['trail_profit']:
                             logger.info(f"当前盈利 {uplRatio:.2%}，触发跟踪止盈")
@@ -524,7 +539,7 @@ def trailing_stop_monitor():
                                     instId=symbol,
                                     algoClOrdId=symbol_info[symbol]['attach_oid'],
                                     newTpTriggerPx=tpTriggerPx,
-                                    newSlTriggerPx=entry_price
+                                    newSlTriggerPx=entry_price*(1+symbol_info[symbol]['trail_profit_slip'])
                                 )
                                 if amend_res['code'] == '0':
                                     logger.info(f"修改订单成功: {symbol_info[symbol]['attach_oid']}")
