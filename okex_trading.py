@@ -195,7 +195,6 @@ def setLever(_symbol, _tdMode, _lever):
 # 取消止盈止损订单
 def cancelLastOrder(_symbol, _lastOrdId):
     try:
-        # res = exchange.privatePostTradeCancelOrder(params={"instId": _symbol, "ordId": _lastOrdId})
         result = tradeAPI.cancel_order(instId=_symbol, ordId = _lastOrdId)
         if result['code'] == '0':
             return True
@@ -427,7 +426,6 @@ def order():
                 'trail_profit': float(_params['trail_profit']),
                 'tp_price': 0,
                 'sl_price': 0,
-                'attach_oid': 0,
                 'tp_sl_order_type': tp_sl_order_type,
                 'trail_profit_slip': trail_profit_slip
             }
@@ -468,6 +466,15 @@ def order():
         # 如果信号反转，则先平仓
         if (action.lower() == "sell" and pos_amount > 0) or (action.lower() == "buy" and pos_amount < 0):
             ret["closedPosition"] = closeAllPosition(symbol, tdMode)
+
+        # 取消之前的挂单
+        cancelLastOrder(symbol, symbol_info[symbol]['ord_id'])
+        cancel_algo_res = tradeAPI.cancel_algo_order(instId=symbol,algo_orders=[symbol_info[symbol]['attach_oid']])
+        if cancel_algo_res['code'] == '0':
+            logger.info(f"取消止盈止损单成功: {symbol}")
+        else:
+            logger.info(f"取消止盈止损单失败: {symbol}")
+
         # 开仓
         sz = amountConvertToSZ(symbol, quantity, price, order_type)
         if sz < 1:
@@ -559,7 +566,7 @@ def trailing_stop_monitor():
                                 # 发现没有止盈止损单，则对当前仓位创建止盈止损单，并取消掉原有的限价委托
                                 cancel_res = tradeAPI.cancel_order(instId=symbol, ordId=symbol_info[symbol]['ord_id'])
                                 if cancel_res['code'] == '0':
-                                    logger.info(f"取消限价委托成功: {symbol}, 未能找到止盈止损单，创建新的止盈止损单")
+                                    logger.info(f"取消未完成的开仓限价委托: {symbol}, 且未能找到止盈止损单，创建新的止盈止损单")
                                     # 创建止盈止损单
                                     if symbol_info[symbol]['tp_sl_order_type'].upper() == "MARKET":
                                         tpOrdPx = -1
