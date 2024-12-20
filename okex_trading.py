@@ -468,23 +468,6 @@ def order():
         # 如果信号反转，则先平仓
         if (action.lower() == "sell" and pos_amount > 0) or (action.lower() == "buy" and pos_amount < 0):
             ret["closedPosition"] = closeAllPosition(symbol, tdMode)
-        # # 检查如果还有未结算的订单，就全部取消
-        # order_list_res = tradeAPI.get_order_list(
-        #     instId=symbol,
-        #     instType="SWAP",
-        #     state="live,partially_filled"
-        # )
-        # if order_list_res['code'] == '0':
-        #     logger.info(f"get_order_list: {order_list_res}")
-        #     if len(order_list_res['data']) > 0:
-        #         for order in order_list_res['data']:
-        #             cancel_res = tradeAPI.cancel_order(instId=symbol, ordId=order['ordId'])
-        #             if cancel_res['code'] == '0':
-        #                 logger.info(f"取消订单成功: {order['ordId']}")
-        #             else:
-        #                 logger.info(f"取消订单失败: {order['ordId']}")
-        # 取消之前的挂单
-        # ret["cancelLastOrder"] = cancelLastOrder(symbol, lastOrdId)
         # 开仓
         sz = amountConvertToSZ(symbol, quantity, price, order_type)
         if sz < 1:
@@ -576,7 +559,7 @@ def trailing_stop_monitor():
                                 # 发现没有止盈止损单，则对当前仓位创建止盈止损单，并取消掉原有的限价委托
                                 cancel_res = tradeAPI.cancel_order(instId=symbol, ordId=symbol_info[symbol]['ord_id'])
                                 if cancel_res['code'] == '0':
-                                    logger.info(f"取消限价委托成功: {symbol}")
+                                    logger.info(f"取消限价委托成功: {symbol}, 未能找到止盈止损单，创建新的止盈止损单")
                                     # 创建止盈止损单
                                     if symbol_info[symbol]['tp_sl_order_type'].upper() == "MARKET":
                                         tpOrdPx = -1
@@ -586,13 +569,12 @@ def trailing_stop_monitor():
                                         tpOrdPx = symbol_info[symbol]['tp_price']
                                         slOrdPx = entry_price*(1+symbol_info[symbol]['trail_profit_slip'])
                                     # 挂单
-                                    
                                     place_algo_res = tradeAPI.place_algo_order(
                                         instId=symbol,
                                         tdMode="cross",
                                         side="sell" if pos_amount > 0 else "buy",
-                                        ordType="conditional",
-                                        closeFraction=1,
+                                        ordType="oco",
+                                        sz=abs(pos_amount),
                                         tpTriggerPx=tpOrdPx,
                                         tpOrdPx=tpOrdPx,
                                         slTriggerPx=slOrdPx,
@@ -601,6 +583,7 @@ def trailing_stop_monitor():
                                     if place_algo_res['code'] == '0':
                                         logger.info(f"创建止盈止损单成功: {symbol}")
                                         # 更新symbol_info,标记已修改过订单
+                                        symbol_info[symbol]['attach_oid'] = place_algo_res['data'][0]['algoId']
                                         symbol_info[symbol]['trail_profit'] = 999999 # 设置一个极大值防止重复触发
                                         save_symbol_info(symbol_info)
                                         logger.info(f"已更新symbol_info,标记{symbol}订单已修改止损价为开仓价:{entry_price}")
@@ -609,33 +592,6 @@ def trailing_stop_monitor():
                                         logger.info(f"place_algo_res: {place_algo_res}")
                                 else:
                                     logger.info(f"取消限价委托失败: {symbol}")
-
-                                
-                                # 创建止盈单
-                                # create_tp_res = tradeAPI.place_order(
-                                #     instId=symbol,
-                                #     tdMode="cross",
-                                #     side="sell" if pos_amount > 0 else "buy",
-                                #     ordType="limit" if symbol_info[symbol]['tp_sl_order_type'] == "limit" else "market",
-                                #     px=symbol_info[symbol]['tp_price'],
-                                #     sz=abs(pos_amount),
-                                #     reduceOnly=True
-                                # )
-                                # create_sl_res = tradeAPI.place_order(
-                                #     instId=symbol,
-                                #     tdMode="cross",
-                                #     side="sell" if pos_amount > 0 else "buy",
-                                #     ordType="limit" if symbol_info[symbol]['tp_sl_order_type'] == "limit" else "market",
-                                #     px=entry_price*(1+symbol_info[symbol]['trail_profit_slip']),
-                                #     sz=abs(pos_amount),
-                                #     reduceOnly=True
-                                # )
-                                # if create_tp_res['code'] == '0' and create_sl_res['code'] == '0':
-                                #     logger.info(f"创建止盈止损单成功: {symbol}")
-                                # else:
-                                #     logger.info(f"创建止盈止损单失败: {symbol}")
-                                #     logger.info(f"create_tp_res: {create_tp_res}")
-                                #     logger.info(f"create_sl_res: {create_sl_res}")
 
         except Exception as e:
             logger.error(f"跟踪止盈监控异常: {str(e)}")
