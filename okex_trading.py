@@ -442,7 +442,7 @@ def order():
     pos_side = ""
     if pos_res['code'] == '0' and len(pos_res['data']) > 0:
         pos_side = pos_res['data'][0]['posSide']
-        pos_amount = int(pos_res['data'][0]['pos'])
+        pos_amount = float(pos_res['data'][0]['pos'])
         logger.info("pre pos side: " + pos_side + "|pos amount: " + str(pos_amount))
     else:
         logger.info(f"当前无仓位:{symbol}| {pos_res['code']} | {pos_res['msg']}")
