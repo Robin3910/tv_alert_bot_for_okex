@@ -471,7 +471,8 @@ def order():
         if 'ord_id' in symbol_info[symbol] and symbol_info[symbol]['ord_id'] is not None:
             cancelLastOrder(symbol, symbol_info[symbol]['ord_id'])
         if 'attach_oid' in symbol_info[symbol] and symbol_info[symbol]['attach_oid'] is not None:
-            cancel_algo_res = tradeAPI.cancel_algo_order(instId=symbol,algo_orders=[symbol_info[symbol]['attach_oid']])
+            cancel_algo_params = [{'algoId': symbol_info[symbol]['attach_oid'], 'instId': symbol}]
+            cancel_algo_res = tradeAPI.cancel_algo_order(cancel_algo_params)
             if cancel_algo_res['code'] == '0':
                 logger.info(f"取消止盈止损单成功: {symbol}")
             else:
