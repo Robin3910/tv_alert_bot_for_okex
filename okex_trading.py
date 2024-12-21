@@ -558,7 +558,7 @@ def trailing_stop_monitor():
                                     # 更新symbol_info,标记已修改过订单
                                     symbol_info[symbol]['trail_profit'] = 999999 # 设置一个极大值防止重复触发
                                     save_symbol_info(symbol_info)
-                                    logger.info(f"已更新symbol_info,标记{symbol}订单已修改止损价为开仓价:{entry_price}")
+                                    logger.info(f"已更新symbol_info,标记{symbol}订单已修改止损价为开仓价:{entry_price*(1+symbol_info[symbol]['trail_profit_slip'])}")
                                     break
                                 else:
                                     logger.info("amend_order: "+symbol_info[symbol]['attach_oid'] + "|"+ amend_res['data'][0]['sCode'] +"|"+ amend_res['data'][0]['sMsg'])
