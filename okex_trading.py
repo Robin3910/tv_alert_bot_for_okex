@@ -468,12 +468,14 @@ def order():
             ret["closedPosition"] = closeAllPosition(symbol, tdMode)
 
         # 取消之前的挂单
-        cancelLastOrder(symbol, symbol_info[symbol]['ord_id'])
-        cancel_algo_res = tradeAPI.cancel_algo_order(instId=symbol,algo_orders=[symbol_info[symbol]['attach_oid']])
-        if cancel_algo_res['code'] == '0':
-            logger.info(f"取消止盈止损单成功: {symbol}")
-        else:
-            logger.info(f"取消止盈止损单失败: {symbol}")
+        if 'ord_id' in symbol_info[symbol] and symbol_info[symbol]['ord_id'] is not None:
+            cancelLastOrder(symbol, symbol_info[symbol]['ord_id'])
+        if 'attach_oid' in symbol_info[symbol] and symbol_info[symbol]['attach_oid'] is not None:
+            cancel_algo_res = tradeAPI.cancel_algo_order(instId=symbol,algo_orders=[symbol_info[symbol]['attach_oid']])
+            if cancel_algo_res['code'] == '0':
+                logger.info(f"取消止盈止损单成功: {symbol}")
+            else:
+                logger.info(f"取消止盈止损单失败: {symbol}")
 
         # 开仓
         sz = amountConvertToSZ(symbol, quantity, price, order_type)
@@ -558,7 +560,7 @@ def trailing_stop_monitor():
                                     logger.info(f"已更新symbol_info,标记{symbol}订单已修改止损价为开仓价:{entry_price}")
                                     break
                                 else:
-                                    logger.info("amend_order " + amend_res["code"] + "|" + amend_res['msg'])
+                                    logger.info("amend_order: "+symbol_info[symbol]['attach_oid'] + "|"+ amend_res['data'][0]['sCode'] +"|"+ amend_res['data'][0]['sMsg'])
                             else:
                                 logger.info(f"get_algo_order_details {symbol_info[symbol]['attach_oid']} failed")
                                 # 如果止盈止损单不存在，则创建止盈止损单
