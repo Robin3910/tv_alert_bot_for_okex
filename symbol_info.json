@@ -1,1 +1,1 @@
-{"BTC-USDT-SWAP": {"leverage": "10", "entry_price": 100515.52, "trail_profit": 999999, "tp_price": 90463.96800000001, "sl_price": 110567.07200000001, "attach_oid": "1733998351"}}
+{"BTC-USDT-SWAP": {"leverage": "5", "entry_price": 99302.7, "trail_profit": 999999, "tp_price": 101288.754, "sl_price": 97316.646, "tp_sl_order_type": "limit", "trail_profit_slip": 0.001, "attach_oid": "1734768325", "ord_id": "2089297780782792704"}}
