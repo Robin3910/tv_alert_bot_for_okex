@@ -404,18 +404,6 @@ def order():
     trail_profit_slip = float(_params['trail_profit_slip'])
     use_all_money = True if _params['use_all_money'] == "true" else False
 
-    # 如果使用全部资金，则使用账户余额来计算开仓量
-    if use_all_money:
-        result = accountAPI.get_account_balance()
-        for i in result['data'][0]['details']:
-            if i['ccy'] == "USDT":
-                available_balance = float(i['availBal'])
-                logger.info(f"当前可用余额available_balance: {available_balance}")
-                break
-        # 使用的是加上杠杆的值
-        quantity = (available_balance * float(leverage)) / price - 1
-        logger.info(f"使用全部资金，开仓量: {quantity}")
-
     if leverage is not None:
         symbol_info = load_symbol_info()
         symbol_key = symbol
@@ -480,8 +468,21 @@ def order():
             else:
                 logger.info(f"取消止盈止损单失败: {symbol}")
 
+        # 如果使用全部资金，则使用账户余额来计算开仓量
+        if use_all_money:
+            result = accountAPI.get_account_balance()
+            for i in result['data'][0]['details']:
+                if i['ccy'] == "USDT":
+                    available_balance = float(i['availBal'])
+                    logger.info(f"当前可用余额available_balance: {available_balance}")
+                    break
+            # 使用的是加上杠杆的值，这里使用资金的96%进行开仓，防止开失败
+            quantity = (available_balance * 0.96 * float(leverage)) / price
+            logger.info(f"使用全部资金，开仓量: {quantity}")
+
         # 开仓
         sz = amountConvertToSZ(symbol, quantity, price, order_type)
+
         if sz < 1:
             ret['msg'] = 'Amount is too small. Please increase amount.'
         else:
