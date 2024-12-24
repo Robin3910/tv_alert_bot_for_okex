@@ -412,7 +412,7 @@ def order():
                 available_balance = float(i['availBal'])
                 break
         # 使用的是加上杠杆的值
-        quantity = available_balance * leverage / price
+        quantity = available_balance * float(leverage) / price
         logger.info(f"使用全部资金，开仓量: {quantity}")
 
     if leverage is not None:
