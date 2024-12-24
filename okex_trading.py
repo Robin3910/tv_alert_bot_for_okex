@@ -410,10 +410,10 @@ def order():
         for i in result['data'][0]['details']:
             if i['ccy'] == "USDT":
                 available_balance = float(i['availBal'])
-                logger.info(f"available_balance: {available_balance}")
+                logger.info(f"当前可用余额available_balance: {available_balance}")
                 break
         # 使用的是加上杠杆的值
-        quantity = available_balance * float(leverage) / price
+        quantity = (available_balance * float(leverage) - 100) / price
         logger.info(f"使用全部资金，开仓量: {quantity}")
 
     if leverage is not None:
