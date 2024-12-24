@@ -411,7 +411,8 @@ def order():
             if i['ccy'] == "USDT":
                 available_balance = float(i['availBal'])
                 break
-        quantity = available_balance / price
+        # 使用的是加上杠杆的值
+        quantity = available_balance * leverage / price
         logger.info(f"使用全部资金，开仓量: {quantity}")
 
     if leverage is not None:
