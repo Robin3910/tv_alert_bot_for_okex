@@ -476,8 +476,8 @@ def order():
                     available_balance = float(i['availBal'])
                     logger.info(f"当前可用余额available_balance: {available_balance}")
                     break
-            # 使用的是加上杠杆的值，这里使用资金的96%进行开仓，防止开失败
-            quantity = (available_balance * 0.96 * float(leverage)) / price
+            # 使用的是加上杠杆的值，这里使用资金的95%进行开仓，防止开失败
+            quantity = (available_balance * 0.95 * float(leverage)) / price
             logger.info(f"使用全部资金，开仓量: {quantity}")
 
         # 开仓
