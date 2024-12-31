@@ -127,54 +127,6 @@ def prefix_symbol(s: str) -> str:
     
     return s
 
-
-# 挂止盈止损单
-def sltpThread(oid, side, symbol, sz, tdMode, config):
-    global lastOrdType,lastAlgoOrdId
-    privatePostTradeOrderAlgoParams = {
-        "instId": symbol,
-        "tdMode": tdMode,
-        "side": "sell" if side.lower() == "buy" else "buy",
-        "ordType": "oco",
-        "sz": sz
-    }
-    if config['trading']['enable_stop_loss']:
-        privatePostTradeOrderAlgoParams['slTriggerPx'] = config['trading']['stop_loss_trigger_price']
-        privatePostTradeOrderAlgoParams['slOrdPx'] = config['trading']['stop_loss_order_price']
-    if config['trading']['enable_stop_gain']:
-        privatePostTradeOrderAlgoParams['tpTriggerPx'] = config['trading']['stop_gain_trigger_price']
-        privatePostTradeOrderAlgoParams['tpOrdPx'] = config['trading']['stop_gain_order_price']
-    while True:
-        try:
-            privateGetTradeOrderRes = exchange.privateGetTradeOrder(params={"ordId": oid,"instId": symbol})
-            # logger.info(privateGetTradeOrderRes)
-            if privateGetTradeOrderRes['data'][0]['state'] == "filled":
-                avgPx = float(privateGetTradeOrderRes['data'][0]['avgPx'])
-                direction = -1 if side.lower() == "buy" else 1
-                slTriggerPx = (1 + direction * float(config['trading']['stop_loss_trigger_price'])*0.01) * avgPx
-                tpOrdPx = (1 + direction * float(config['trading']['stop_gain_order_price'])*0.01) * avgPx
-                tpTriggerPx = (1 - direction * float(config['trading']['stop_gain_trigger_price'])*0.01) * avgPx
-                slOrdPx = (1 - direction * float(config['trading']['stop_loss_order_price'])*0.01) * avgPx
-                privatePostTradeOrderAlgoParams['slTriggerPx'] = '%.12f' % slTriggerPx
-                privatePostTradeOrderAlgoParams['slOrdPx'] = '%.12f' % slOrdPx
-                privatePostTradeOrderAlgoParams['tpTriggerPx'] = '%.12f' % tpTriggerPx
-                privatePostTradeOrderAlgoParams['tpOrdPx'] = '%.12f' % tpOrdPx
-                logger.info("订单{oid}设置止盈止损...".format(oid=oid))
-                privatePostTradeOrderAlgoRes = exchange.privatePostTradeOrderAlgo(params=privatePostTradeOrderAlgoParams)
-                if 'code' in privatePostTradeOrderAlgoRes and privatePostTradeOrderAlgoRes['code'] == '0':
-                    lastAlgoOrdId = privatePostTradeOrderAlgoRes['data'][0]['algoId']
-                    break
-                else:
-                    continue
-            elif privateGetTradeOrderRes['data'][0]['state'] == "canceled":
-                lastOrdType = None
-                break
-        except Exception as e:
-            logger.info(e)
-        time.sleep(1)
-    logger.info("订单{oid}止盈止损单挂单结束".format(oid=oid))
-
-
 # 设置杠杆
 def setLever(_symbol, _tdMode, _lever):
     try:
@@ -234,7 +186,7 @@ def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode, tp, sl, tp_s
         else:
             # 止盈止损如果为限价单，则为限价单的价格
             tpOrdPx = tp
-            slOrdPx = sl
+            slOrdPx = -1
         # 挂单
         attachAlgoOrds = [{
             "tpTriggerPx": tp,
@@ -592,7 +544,7 @@ def trailing_stop_monitor():
                                         tpTriggerPx=tpOrdPx,
                                         tpOrdPx=tpOrdPx,
                                         slTriggerPx=slOrdPx,
-                                        slOrdPx=slOrdPx,
+                                        slOrdPx=-1,
                                     )
                                     if place_algo_res['code'] == '0':
                                         logger.info(f"创建止盈止损单成功: {symbol}")
