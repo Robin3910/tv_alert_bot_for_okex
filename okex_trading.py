@@ -393,14 +393,14 @@ def order():
     global lastOrdType
     if action.lower() in ["buy", "sell"]:
         # 检查EMA和价格之间的差价比例
-        if 'ema' in _params and 'price' in _params and 'entry_limit' in _params:
-            # 计算差价比例
-            price_diff_ratio = abs(price - ema) / ema
+        # if 'ema' in _params and 'price' in _params and 'entry_limit' in _params:
+        #     # 计算差价比例
+        #     price_diff_ratio = abs(price - ema) / ema
             
-            # 如果差价比例超过限制,则不开单
-            if price_diff_ratio > entry_limit:
-                ret['msg'] = f'价格偏离EMA过大,差价比例{price_diff_ratio:.2%},超过限制{entry_limit:.2%}'
-                return ret
+        #     # 如果差价比例超过限制,则不开单
+        #     if price_diff_ratio > entry_limit:
+        #         ret['msg'] = f'价格偏离EMA过大,差价比例{price_diff_ratio:.2%},超过限制{entry_limit:.2%}'
+        #         return ret
         # 检查是否存在相同方向的订单
         if (action.lower() == "buy" and pos_amount > 0) or (action.lower() == "sell" and pos_amount < 0):
             ret['msg'] = f'已存在相同方向的仓位,数量:{abs(pos_amount)},不重复开单'
