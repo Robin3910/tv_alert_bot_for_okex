@@ -594,7 +594,9 @@ def trailing_stop_monitor():
                                 else:
                                     logger.info(f"取消限价委托失败: {symbol}")
                                     send_wx_notification("取消未完成的限价开仓委托失败", f"取消未完成的限价开仓委托失败|{symbol}")
-
+            elif pos_res['code'] != '0':
+                logger.info(f"get_positions 失败: {pos_res['code']}|{pos_res['msg']}")
+                send_wx_notification("获取持仓信息失败", f"获取持仓信息失败|{pos_res['code']}|{pos_res['msg']}")
         except Exception as e:
             logger.error(f"跟踪止盈监控异常: {str(e)}")
             send_wx_notification("跟踪止盈监控异常", f"跟踪止盈监控异常: {str(e)}")
