@@ -598,7 +598,7 @@ def trailing_stop_monitor():
         except Exception as e:
             logger.error(f"跟踪止盈监控异常: {str(e)}")
             send_wx_notification("跟踪止盈监控异常", f"跟踪止盈监控异常: {str(e)}")
-        time.sleep(10)
+        time.sleep(1)
 
 if __name__ == '__main__':
     try:
