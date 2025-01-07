@@ -51,6 +51,7 @@ listenPort = config['service']['listen_port']
 debugMode = config['service']['debug_mode']
 ipWhiteList = config['service']['ip_white_list'].split(",")
 flag = config['account']['flag']
+wx_token = config['account']['wx_token']
 
 
 # 交易所API账户配置
@@ -91,6 +92,24 @@ lastAlgoOrdId = 0
 # 修改全局变量名称和文件名
 SYMBOL_INFO_FILE = 'symbol_info.json'
 
+def send_wx_notification(title, message):
+    """
+    发送微信通知
+    
+    Args:
+        title: 通知标题
+        message: 通知内容
+    """
+    try:
+        mydata = {
+            'text': title,
+            'desp': message
+        }
+        requests.post(f'https://wx.xtuis.cn/{wx_token}.send', data=mydata)
+        logger.info('发送微信消息成功')
+    except Exception as e:
+        logger.error(f'发送微信消息失败: {str(e)}')
+
 # 更新读取缓存函数
 def load_symbol_info():
     try:
@@ -98,6 +117,7 @@ def load_symbol_info():
             with open(SYMBOL_INFO_FILE, 'r') as f:
                 return json.load(f)
     except Exception as e:
+        send_wx_notification("读取symbol信息缓存出错", f"读取symbol信息缓存出错: {str(e)}")
         logger.error(f"读取symbol信息缓存出错: {str(e)}")
     return {}
 
@@ -107,6 +127,7 @@ def save_symbol_info(cache):
         with open(SYMBOL_INFO_FILE, 'w') as f:
             json.dump(cache, f)
     except Exception as e:
+        send_wx_notification("保存symbol信息缓存出错", f"保存symbol信息缓存出错: {str(e)}")
         logger.error(f"保存symbol信息缓存出错: {str(e)}")
 
 
@@ -139,9 +160,11 @@ def setLever(_symbol, _tdMode, _lever):
             return True
         else:
             logger.info("setLever " + res["code"] + "|" + res['msg'])
+            send_wx_notification("设置杠杆失败", f"设置杠杆失败: {res['msg']}")
             return False
     except Exception as e:
-        # logger.info("privatePostTradeCancelBatchOrders " + str(e))
+        logger.info("setLever 失败" + str(e))
+        send_wx_notification("设置杠杆失败", f"设置杠杆失败: {str(e)}")
         return False
 
 # 取消止盈止损订单
@@ -154,7 +177,7 @@ def cancelLastOrder(_symbol, _lastOrdId):
             logger.info("cancelLastOrder " + result["code"] + "|" + result['msg'])
             return False
     except Exception as e:
-        # logger.info("privatePostTradeCancelBatchOrders " + str(e))
+        logger.info("cancelLastOrder 失败" + str(e))
         return False
 
 # 平掉所有仓位
@@ -165,15 +188,18 @@ def closeAllPosition(_symbol, _tdMode):
         # 市价全平
         result = tradeAPI.close_positions(
             instId=_symbol,
-            mgnMode=_tdMode
+            mgnMode=_tdMode,
+            autoCxl=True
         )
         if result['code'] == '0':
             return True
         else:
             logger.info("closeAllPosition " + result["code"] + "|" + result['msg'])
+            send_wx_notification("平仓失败", f"平仓失败: {result['msg']}")
             return False
     except Exception as e:
-        logger.info("privatePostTradeClosePosition " + str(e))
+        logger.info("closeAllPosition 失败" + str(e))
+        send_wx_notification("平仓失败", f"平仓失败: {str(e)}")
         return False
 
 # 开仓
@@ -211,12 +237,15 @@ def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode, tp, sl, tp_s
             lastOrdId = res['data'][0]['ordId']
             ord_id = res['data'][0]['ordId']
             logger.info(f"{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}|create order successfully")
+            send_wx_notification("创建订单成功", f"创建订单成功|{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}")
             return ord_id, attachAlgoOrds[0]['attachAlgoClOrdId'], "create order successfully"
         else:
             logger.info(f"{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}|create order failed")
+            send_wx_notification("创建订单失败", f"创建订单失败|{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}: {res['data'][0]['sMsg']}")
             return "", "", res['data'][0]['sMsg']
     except Exception as e:
         logger.info(f"{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}|create order failed")
+        send_wx_notification("创建订单失败", f"创建订单失败|{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}: {str(e)}")
         return False, str(e)
 
 
@@ -232,7 +261,8 @@ def initInstruments():
             swapInstruments = swapInstrumentsRes['data']
             c = c + 1
     except Exception as e:
-        logger.info("publicGetPublicInstruments " + str(e))
+        logger.info("publicGetPublicInstruments 失败" + str(e))
+        send_wx_notification("获取合约信息失败", f"获取合约信息失败: {str(e)}")
     try:
         # 获取交割合约基础信息
         futureInstrumentsRes = accountAPI.get_instruments(instType="FUTURES")
@@ -242,7 +272,8 @@ def initInstruments():
             futureInstruments = futureInstrumentsRes['data']
             c = c + 1
     except Exception as e:
-        logger.info("get_instruments " + str(e))
+        logger.info("get_instruments 失败" + str(e))
+        send_wx_notification("获取合约信息失败", f"获取合约信息失败: {str(e)}")
     return c >= 2
 
 # 将 amount 币数转换为合约张数
@@ -264,6 +295,7 @@ def amountConvertToSZ(_symbol, _amount, _price, _ordType):
         return False
     faceValue = getFaceValue(_symbol)
     if faceValue is False:
+        send_wx_notification("获取合约面值失败", f"获取合约面值失败: {_symbol}")
         raise Exception("getFaceValue error.")
     # 币本位合约：张数 = 币数 / 面值 / 合约乘数 * 标记价格
     # U本位合约：张数 = 币数 / 面值 / 合约乘数
@@ -384,7 +416,7 @@ def order():
     pos_side = ""
     if pos_res['code'] == '0' and len(pos_res['data']) > 0:
         pos_side = pos_res['data'][0]['posSide']
-        pos_amount = float(pos_res['data'][0]['pos'])
+        pos_amount = float(pos_res['data'][0]['pos']) # 这获取到的是张数，而不是币数
         logger.info("pre pos side: " + pos_side + "|pos amount: " + str(pos_amount))
     else:
         logger.info(f"当前无仓位:{symbol}| {pos_res['code']} | {pos_res['msg']}")
@@ -515,9 +547,11 @@ def trailing_stop_monitor():
                                     symbol_info[symbol]['trail_profit'] = 999999 # 设置一个极大值防止重复触发
                                     save_symbol_info(symbol_info)
                                     logger.info(f"已更新symbol_info,标记{symbol}订单已修改止损价为开仓价:{slTriggerPx}")
+                                    # send_wx_notification("修改止损订单成功", f"修改止损订单成功|{symbol_info[symbol]['attach_oid']}")
                                     break
                                 else:
                                     logger.info("amend_order: "+symbol_info[symbol]['attach_oid'] + "|"+ amend_res['data'][0]['sCode'] +"|"+ amend_res['data'][0]['sMsg'])
+                                    send_wx_notification("修改止损订单失败", f"修改止损订单失败|{symbol_info[symbol]['attach_oid']}|{amend_res['data'][0]['sCode']}|{amend_res['data'][0]['sMsg']}")
                             else:
                                 logger.info(f"get_algo_order_details {symbol_info[symbol]['attach_oid']} failed")
                                 # 如果止盈止损单不存在，则创建止盈止损单
@@ -555,12 +589,15 @@ def trailing_stop_monitor():
                                         logger.info(f"已更新symbol_info,标记{symbol}订单已修改止损价为开仓价:{entry_price}")
                                     else:
                                         logger.info(f"创建止盈止损单失败: {symbol}")
+                                        send_wx_notification("创建止盈止损单失败", f"创建止盈止损单失败|{symbol}")
                                         logger.info(f"place_algo_res: {place_algo_res}")
                                 else:
                                     logger.info(f"取消限价委托失败: {symbol}")
+                                    send_wx_notification("取消未完成的限价开仓委托失败", f"取消未完成的限价开仓委托失败|{symbol}")
 
         except Exception as e:
             logger.error(f"跟踪止盈监控异常: {str(e)}")
+            send_wx_notification("跟踪止盈监控异常", f"跟踪止盈监控异常: {str(e)}")
         time.sleep(10)
 
 if __name__ == '__main__':
