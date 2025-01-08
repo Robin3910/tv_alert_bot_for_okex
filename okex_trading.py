@@ -538,7 +538,6 @@ def trailing_stop_monitor():
                                 amend_res = tradeAPI.amend_algo_order(
                                     instId=symbol,
                                     algoClOrdId=symbol_info[symbol]['attach_oid'],
-                                    newTpTriggerPx=tpTriggerPx,
                                     newSlTriggerPx=slTriggerPx
                                 )
                                 if amend_res['code'] == '0':
@@ -547,7 +546,7 @@ def trailing_stop_monitor():
                                     symbol_info[symbol]['trail_profit'] = 999999 # 设置一个极大值防止重复触发
                                     save_symbol_info(symbol_info)
                                     logger.info(f"已更新symbol_info,标记{symbol}订单已修改止损价为开仓价:{slTriggerPx}")
-                                    # send_wx_notification("修改止损订单成功", f"修改止损订单成功|{symbol_info[symbol]['attach_oid']}")
+                                    send_wx_notification("修改止损订单成功", f"修改止损订单成功|{symbol}|{symbol_info[symbol]['attach_oid']}")
                                     break
                                 else:
                                     logger.info("amend_order: "+symbol_info[symbol]['attach_oid'] + "|"+ amend_res['data'][0]['sCode'] +"|"+ amend_res['data'][0]['sMsg'])
@@ -600,7 +599,7 @@ def trailing_stop_monitor():
         except Exception as e:
             logger.error(f"跟踪止盈监控异常: {str(e)}")
             send_wx_notification("跟踪止盈监控异常", f"跟踪止盈监控异常: {str(e)}")
-        time.sleep(1)
+        time.sleep(2)
 
 if __name__ == '__main__':
     try:
