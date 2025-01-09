@@ -101,11 +101,7 @@ def send_wx_notification(title, message):
         message: 通知内容
     """
     try:
-        mydata = {
-            'text': title,
-            'desp': message
-        }
-        requests.post(f'https://wx.xtuis.cn/{wx_token}.send', data=mydata)
+        requests.get(f'https://wx.xtuis.cn/{wx_token}.send?text={title}&desp={message}')
         logger.info('发送微信消息成功')
     except Exception as e:
         logger.error(f'发送微信消息失败: {str(e)}')
@@ -236,8 +232,8 @@ def createOrder(_symbol, _amount, _price, _side, _ordType, _tdMode, tp, sl, tp_s
         if res['code'] == '0':
             lastOrdId = res['data'][0]['ordId']
             ord_id = res['data'][0]['ordId']
-            logger.info(f"{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}|create order successfully")
-            send_wx_notification("创建订单成功", f"创建订单成功|{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}")
+            logger.info(f"{ord_id}|{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}|create order successfully")
+            send_wx_notification("创建订单成功", f"创建订单成功{ord_id}|{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}")
             return ord_id, attachAlgoOrds[0]['attachAlgoClOrdId'], "create order successfully"
         else:
             logger.info(f"{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}|create order failed")
