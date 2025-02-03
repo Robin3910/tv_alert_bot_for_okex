@@ -101,7 +101,8 @@ def send_wx_notification(title, message):
         message: 通知内容
     """
     try:
-        requests.get(f'https://wx.xtuis.cn/{wx_token}.send?text={title}&desp={message}')
+        # https://sctapi.ftqq.com/SCT264877TGGj20niEYBVMMFU1aN6NQF6g.send?title=doge
+        requests.get(f'https://sctapi.ftqq.com/{wx_token}.send?text={title}&desp={message}')
         logger.info('发送微信消息成功')
     except Exception as e:
         logger.error(f'发送微信消息失败: {str(e)}')
