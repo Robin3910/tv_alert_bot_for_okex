@@ -336,21 +336,28 @@ def ping():
 
 # 请求参数
 # {
-#     "symbol": "BINANCE:BTCUSDT",
-#     "ema": "10064.43876212",
-#     "quantity": "0.099309859",
+#     "symbol": "OKX:BTCUSDT.P",
+#     "trail_profit_slip": "0.001", # 追踪移动止损的滑点
+#     "trail_profit_3_percent": "0.05", # 追踪移动止损的百分比
+#     "trail_profit_3_activation": "0.1", # 追踪移动止损的激活百分比
+#     "trail_profit_2_percent": "0.02", # 追踪移动止损的百分比
+#     "trail_profit_2_activation": "0.05", # 追踪移动止损的激活百分比
+#     "trail_stop_callback": "0.005", # 追踪移动止损的回调百分比
+#     "trail_stop_activation": "0.02", # 追踪移动止损的激活百分比
+#     "bool_trail_stop": "false", # 是否开启追踪移动止损
+#     "ema": "104183.0433333325",
+#     "tp_sl_order_type": "limit",
+#     "quantity": "0.011517011",
 #     "action": "buy",
-#     "price": "100673.52",
-#     "total_usdt": "10000",
+#     "price": "104193.7",
+#     "total_usdt": "1200",
 #     "use_all_money": "false",
-#     "leverage": "1",
-#     "order_type": "market",
-#     "tp_percent": "0.1",
-#     "sl_percent": "0.1",
-#     "trail_profit": "0.005",
-#     "entry_limit": "0.02",
-#     "trail_profit_slip": "0.001",
-#     "tp_sl_order_type": "limit"
+#     "leverage": "10",
+#     "order_type": "limit",
+#     "tp_percent": "0.03",
+#     "sl_percent": "0.03",
+#     "trail_profit": "0.015",
+#     "entry_limit": "0.02"
 # }
 @app.route('/order', methods=['POST'])
 def order():
@@ -383,6 +390,13 @@ def order():
     tp_sl_order_type = _params['tp_sl_order_type']
     trail_profit_slip = float(_params['trail_profit_slip'])
     use_all_money = True if _params['use_all_money'] == "true" else False
+    trail_profit_3_percent = float(_params['trail_profit_3_percent'])
+    trail_profit_3_activation = float(_params['trail_profit_3_activation'])
+    trail_profit_2_percent = float(_params['trail_profit_2_percent'])
+    trail_profit_2_activation = float(_params['trail_profit_2_activation'])
+    trail_stop_callback = float(_params['trail_stop_callback'])
+    trail_stop_activation = float(_params['trail_stop_activation'])
+    bool_trail_stop = True if _params['bool_trail_stop'] == "true" else False
 
     if leverage is not None:
         symbol_info = load_symbol_info()
@@ -397,7 +411,15 @@ def order():
                 'tp_price': 0,
                 'sl_price': 0,
                 'tp_sl_order_type': tp_sl_order_type,
-                'trail_profit_slip': trail_profit_slip
+                'trail_profit_slip': trail_profit_slip,
+                'trail_profit_3_percent': trail_profit_3_percent,
+                'trail_profit_3_activation': trail_profit_3_activation,
+                'trail_profit_2_percent': trail_profit_2_percent,
+                'trail_profit_2_activation': trail_profit_2_activation,
+                'trail_stop_callback': trail_stop_callback,
+                'trail_stop_activation': trail_stop_activation,
+                'bool_trail_stop': bool_trail_stop,
+                "trail_profit_type": 0
             }
         
         # 更新杠杆值
@@ -485,7 +507,17 @@ def order():
                     'attach_oid': attach_oid,
                     'ord_id': ord_id,
                     'tp_sl_order_type': tp_sl_order_type,
-                    'trail_profit_slip': trail_profit_slip
+                    'trail_profit_slip': trail_profit_slip,
+                    'trail_profit_3_percent': trail_profit_3_percent,
+                    'trail_profit_3_activation': trail_profit_3_activation,
+                    'trail_profit_2_percent': trail_profit_2_percent,
+                    'trail_profit_2_activation': trail_profit_2_activation,
+                    'trail_stop_callback': trail_stop_callback,
+                    'trail_stop_activation': trail_stop_activation,
+                    'bool_trail_stop': bool_trail_stop,
+                    "trail_profit_type": 0,
+                    "active_trail_stop": False,
+                    "trail_stop_highest_price": 0
                 })
                 save_symbol_info(symbol_info)
     # 平仓
@@ -516,20 +548,35 @@ def trailing_stop_monitor():
                 for position in pos_res['data']:
                     symbol = position['instId']
                     pos_amount = float(position['pos'])
+                    entry_price = float(position['avgPx'])
+                    uplRatio = float(position['uplRatio']) / int(symbol_info[symbol]['leverage'])
                     # 如果有持仓
-                    if pos_amount != 0:
-                        entry_price = float(position['avgPx'])
-                        uplRatio = float(position['uplRatio']) / int(symbol_info[symbol]['leverage'])
+                    if pos_amount != 0 and not symbol_info[symbol]['bool_trail_stop']:
+                        slTriggerPx = 0
+                        trail_profit_type = 0
+                        # 分成多段上移止损位
+                        if uplRatio >= symbol_info[symbol]['trail_profit_3_activation'] and symbol_info[symbol]['trail_profit_type'] < 3:
+                            slTriggerPx = entry_price*(1+symbol_info[symbol]['trail_profit_3_percent'])*(1+symbol_info[symbol]['trail_profit_slip']) if pos_amount > 0 else entry_price*(1-symbol_info[symbol]['trail_profit_3_percent'])*(1-symbol_info[symbol]['trail_profit_slip'])
+                            trail_profit_type = 3
+                        elif uplRatio >= symbol_info[symbol]['trail_profit_2_activation'] and symbol_info[symbol]['trail_profit_type'] < 2:
+                            slTriggerPx = entry_price*(1+symbol_info[symbol]['trail_profit_2_percent'])*(1+symbol_info[symbol]['trail_profit_slip']) if pos_amount > 0 else entry_price*(1-symbol_info[symbol]['trail_profit_2_percent'])*(1-symbol_info[symbol]['trail_profit_slip'])
+                            trail_profit_type = 2
+                        elif uplRatio >= symbol_info[symbol]['trail_profit'] and symbol_info[symbol]['trail_profit_type'] < 1:
+                            slTriggerPx = entry_price*(1+symbol_info[symbol]['trail_profit_slip']) if pos_amount > 0 else entry_price*(1-symbol_info[symbol]['trail_profit_slip'])
+                            trail_profit_type = 1
+                        else:
+                            slTriggerPx = 0
+
                         # 如果浮盈超过止盈上移的点位，则修改止盈止损单
-                        if uplRatio > symbol_info[symbol]['trail_profit']:
-                            logger.info(f"当前盈利 {uplRatio:.2%}，触发跟踪止盈")
+                        if slTriggerPx > 0:
+                            logger.info(f"{symbol}|当前盈利 {uplRatio:.2%}，触发跟踪止盈, 当前止损位置: {slTriggerPx}，第 {trail_profit_type} 级止损位")
                             order_details_res = tradeAPI.get_algo_order_details(
                                 algoClOrdId=symbol_info[symbol]['attach_oid']
                             )
                             if order_details_res['code'] == '0':
                                 order_data = order_details_res['data'][0]
                                 tpTriggerPx = order_data["tpTriggerPx"]
-                                slTriggerPx = entry_price*(1+symbol_info[symbol]['trail_profit_slip']) if pos_amount > 0 else entry_price*(1-symbol_info[symbol]['trail_profit_slip'])
+                                # slTriggerPx = entry_price*(1+symbol_info[symbol]['trail_profit_slip']) if pos_amount > 0 else entry_price*(1-symbol_info[symbol]['trail_profit_slip'])
                                 # 修改订单
                                 amend_res = tradeAPI.amend_algo_order(
                                     instId=symbol,
@@ -539,7 +586,8 @@ def trailing_stop_monitor():
                                 if amend_res['code'] == '0':
                                     logger.info(f"修改订单成功: {symbol_info[symbol]['attach_oid']}")
                                     # 更新symbol_info,标记已修改过订单
-                                    symbol_info[symbol]['trail_profit'] = 999999 # 设置一个极大值防止重复触发
+                                    symbol_info[symbol]['trail_profit_type'] = trail_profit_type
+                                    # symbol_info[symbol]['trail_profit'] = 999999 # 设置一个极大值防止重复触发
                                     save_symbol_info(symbol_info)
                                     logger.info(f"已更新symbol_info,标记{symbol}订单已修改止损价为开仓价:{slTriggerPx}")
                                     send_wx_notification("修改止损订单成功", f"修改止损订单成功|{symbol}|{symbol_info[symbol]['attach_oid']}")
@@ -579,7 +627,8 @@ def trailing_stop_monitor():
                                         logger.info(f"创建止盈止损单成功: {symbol}")
                                         # 更新symbol_info,标记已修改过订单
                                         symbol_info[symbol]['attach_oid'] = place_algo_res['data'][0]['algoId']
-                                        symbol_info[symbol]['trail_profit'] = 999999 # 设置一个极大值防止重复触发
+                                        # symbol_info[symbol]['trail_profit'] = 999999 # 设置一个极大值防止重复触发
+                                        symbol_info[symbol]['trail_profit_type'] = trail_profit_type
                                         save_symbol_info(symbol_info)
                                         logger.info(f"已更新symbol_info,标记{symbol}订单已修改止损价为开仓价:{entry_price}")
                                     else:
@@ -589,13 +638,35 @@ def trailing_stop_monitor():
                                 else:
                                     logger.info(f"取消限价委托失败: {symbol}")
                                     send_wx_notification("取消未完成的限价开仓委托失败", f"取消未完成的限价开仓委托失败|{symbol}")
+                    elif pos_amount != 0 and symbol_info[symbol]['bool_trail_stop']:
+                        # 如果触发了追踪移动止损，则每次都需要判断一下当前价格是否从最高点回落了一定程序，如果回落了，则直接平仓
+                        if uplRatio > symbol_info[symbol]['trail_stop_activation'] or symbol_info[symbol]['active_trail_stop']:
+                            logger.info(f"{symbol}|当前盈利 {uplRatio:.2%}，触发追踪移动止损")
+                            if symbol_info[symbol]['active_trail_stop'] is False:
+                                symbol_info[symbol]['active_trail_stop'] = True
+                                save_symbol_info(symbol_info)
+                            # 获取当前价格以及最高点
+                            # 可以直接将当前价格与记录的最高价做比较，如果发现当前价格比最高价高，则用当前价格更新最高价
+                            result = publicDataAPI.get_mark_price(
+                                instId=symbol,
+                                instType="SWAP",
+                            )
+                            current_price = float(result['data'][0]['markPx'])
+                            if current_price > symbol_info[symbol]['trail_stop_highest_price']:
+                                symbol_info[symbol]['trail_stop_highest_price'] = current_price
+                                save_symbol_info(symbol_info)
+                            if symbol_info[symbol]['trail_stop_highest_price'] - current_price > symbol_info[symbol]['trail_stop_callback']:
+                                logger.info(f"{symbol}|当前价格从最高点回落超过{symbol_info[symbol]['trail_stop_callback']}，平仓")
+                                # 平仓
+                                closeAllPosition(symbol, "cross")
+                      
             elif pos_res['code'] != '0':
                 logger.info(f"get_positions 失败: {pos_res['code']}|{pos_res['msg']}")
                 send_wx_notification("获取持仓信息失败", f"获取持仓信息失败|{pos_res['code']}|{pos_res['msg']}")
         except Exception as e:
             logger.error(f"跟踪止盈监控异常: {str(e)}")
             send_wx_notification("跟踪止盈监控异常", f"跟踪止盈监控异常: {str(e)}")
-        time.sleep(2)
+        time.sleep(1)
 
 if __name__ == '__main__':
     try:
