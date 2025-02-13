@@ -101,7 +101,7 @@ def send_wx_notification(title, message):
         message: 通知内容
     """
     try:
-        # https://sctapi.ftqq.com/SCT264877TGGj20niEYBVMMFU1aN6NQF6g.send?title=doge
+        # https://sctapi.ftqq.com/SCT264877TGGj20niEYBVMMFU1aN6NQF6g.send?title=test
         requests.get(f'https://sctapi.ftqq.com/{wx_token}.send?text={title}&desp={message}')
         logger.info('发送微信消息成功')
     except Exception as e:
@@ -395,6 +395,8 @@ def order():
     trail_profit_3_activation = float(_params['trail_profit_3_activation'])
     trail_profit_2_percent = float(_params['trail_profit_2_percent'])
     trail_profit_2_activation = float(_params['trail_profit_2_activation'])
+    trail_profit_1_percent = float(_params['trail_profit_1_percent'])
+
     trail_stop_callback = float(_params['trail_stop_callback'])
     trail_stop_activation = float(_params['trail_stop_activation'])
     bool_trail_stop = True if _params['bool_trail_stop'] == "true" else False
@@ -417,6 +419,7 @@ def order():
                 'trail_profit_3_activation': trail_profit_3_activation,
                 'trail_profit_2_percent': trail_profit_2_percent,
                 'trail_profit_2_activation': trail_profit_2_activation,
+                'trail_profit_1_percent': trail_profit_1_percent,
                 'trail_stop_callback': trail_stop_callback,
                 'trail_stop_activation': trail_stop_activation,
                 'bool_trail_stop': bool_trail_stop,
@@ -513,12 +516,14 @@ def order():
                     'trail_profit_3_activation': trail_profit_3_activation,
                     'trail_profit_2_percent': trail_profit_2_percent,
                     'trail_profit_2_activation': trail_profit_2_activation,
+                    'trail_profit_1_percent': trail_profit_1_percent,
                     'trail_stop_callback': trail_stop_callback,
                     'trail_stop_activation': trail_stop_activation,
                     'bool_trail_stop': bool_trail_stop,
                     "trail_profit_type": 0,
                     "active_trail_stop": False,
-                    "trail_stop_highest_price": 0
+                    "trail_stop_highest_price": 0,
+                    "trail_stop_lowest_price": 9999999,
                 })
                 save_symbol_info(symbol_info)
     # 平仓
@@ -563,7 +568,7 @@ def trailing_stop_monitor():
                             slTriggerPx = entry_price*(1+symbol_info[symbol]['trail_profit_2_percent'])*(1+symbol_info[symbol]['trail_profit_slip']) if pos_amount > 0 else entry_price*(1-symbol_info[symbol]['trail_profit_2_percent'])*(1-symbol_info[symbol]['trail_profit_slip'])
                             trail_profit_type = 2
                         elif uplRatio >= symbol_info[symbol]['trail_profit'] and symbol_info[symbol]['trail_profit_type'] < 1:
-                            slTriggerPx = entry_price*(1+symbol_info[symbol]['trail_profit_slip']) if pos_amount > 0 else entry_price*(1-symbol_info[symbol]['trail_profit_slip'])
+                            slTriggerPx = entry_price*(1+symbol_info[symbol]['trail_profit_1_percent'])*(1+symbol_info[symbol]['trail_profit_slip']) if pos_amount > 0 else entry_price*(1-symbol_info[symbol]['trail_profit_1_percent'])*(1-symbol_info[symbol]['trail_profit_slip'])
                             trail_profit_type = 1
                         else:
                             slTriggerPx = 0
@@ -652,14 +657,26 @@ def trailing_stop_monitor():
                                 instId=symbol,
                                 instType="SWAP",
                             )
-                            current_price = float(result['data'][0]['markPx'])
-                            if current_price > symbol_info[symbol]['trail_stop_highest_price']:
-                                symbol_info[symbol]['trail_stop_highest_price'] = current_price
-                                save_symbol_info(symbol_info)
-                            if symbol_info[symbol]['trail_stop_highest_price'] - current_price > symbol_info[symbol]['trail_stop_callback']:
-                                logger.info(f"{symbol}|当前价格从最高点回落超过{symbol_info[symbol]['trail_stop_callback']}，平仓")
-                                # 平仓
-                                closeAllPosition(symbol, "cross")
+                            # 做多情况
+                            if pos_amount > 0:
+                                current_price = float(result['data'][0]['markPx'])
+                                if current_price > symbol_info[symbol]['trail_stop_highest_price']:
+                                    symbol_info[symbol]['trail_stop_highest_price'] = current_price
+                                    save_symbol_info(symbol_info)
+                                if symbol_info[symbol]['trail_stop_highest_price'] - current_price > symbol_info[symbol]['trail_stop_callback']:
+                                    logger.info(f"{symbol}|做多|当前价格从最高点回落超过{symbol_info[symbol]['trail_stop_callback']}，平仓")
+                                    # 平仓
+                                    closeAllPosition(symbol, "cross")
+                            # 做空情况
+                            if pos_amount < 0:
+                                current_price = float(result['data'][0]['markPx'])
+                                if current_price < symbol_info[symbol]['trail_stop_lowest_price']:
+                                    symbol_info[symbol]['trail_stop_lowest_price'] = current_price
+                                    save_symbol_info(symbol_info)
+                                if symbol_info[symbol]['trail_stop_lowest_price'] - current_price > symbol_info[symbol]['trail_stop_callback']:
+                                    logger.info(f"{symbol}|做空|当前价格从最低点回升超过{symbol_info[symbol]['trail_stop_callback']}，平仓")
+                                    # 平仓
+                                    closeAllPosition(symbol, "cross")
                       
             elif pos_res['code'] != '0':
                 logger.info(f"get_positions 失败: {pos_res['code']}|{pos_res['msg']}")
