@@ -663,7 +663,7 @@ def trailing_stop_monitor():
                                 if current_price > symbol_info[symbol]['trail_stop_highest_price']:
                                     symbol_info[symbol]['trail_stop_highest_price'] = current_price
                                     save_symbol_info(symbol_info)
-                                if symbol_info[symbol]['trail_stop_highest_price'] - current_price > symbol_info[symbol]['trail_stop_callback']:
+                                if (symbol_info[symbol]['trail_stop_highest_price'] - current_price) / current_price > symbol_info[symbol]['trail_stop_callback']:
                                     logger.info(f"{symbol}|做多|当前价格从最高点回落超过{symbol_info[symbol]['trail_stop_callback']}，平仓")
                                     # 平仓
                                     closeAllPosition(symbol, "cross")
@@ -673,7 +673,7 @@ def trailing_stop_monitor():
                                 if current_price < symbol_info[symbol]['trail_stop_lowest_price']:
                                     symbol_info[symbol]['trail_stop_lowest_price'] = current_price
                                     save_symbol_info(symbol_info)
-                                if symbol_info[symbol]['trail_stop_lowest_price'] - current_price > symbol_info[symbol]['trail_stop_callback']:
+                                if (current_price - symbol_info[symbol]['trail_stop_lowest_price']) / symbol_info[symbol]['trail_stop_lowest_price'] > symbol_info[symbol]['trail_stop_callback']:
                                     logger.info(f"{symbol}|做空|当前价格从最低点回升超过{symbol_info[symbol]['trail_stop_callback']}，平仓")
                                     # 平仓
                                     closeAllPosition(symbol, "cross")
