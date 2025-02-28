@@ -86,11 +86,11 @@ class OkxAccountHelper:
             try:
                 # 获取当前持仓信息
                 pos_res = accountAPI.get_positions()
-                self.logger.info(f"【{instance.api_key}】监控线程获取持仓信息:\n{str(pos_res)}")
+                # self.logger.info(f"【{instance.api_key}】监控线程获取持仓信息:\n{str(pos_res)}")
                 if pos_res['code'] == '0' and len(pos_res['data']) > 0:
                     # 加载本地保存的订单信息
                     symbol_info = self.load_symbol_info(instance)
-                    self.logger.info(f"【{instance.api_key}】监控线程获取本地持仓信息:\n{str(symbol_info)}")
+                    # self.logger.info(f"【{instance.api_key}】监控线程获取本地持仓信息:\n{str(symbol_info)}")
                     # 循环获取仓位持有信息
                     for position in pos_res['data']:
                         # 获取产品id 如BTC-USDT-SWAP

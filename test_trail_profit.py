@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch, MagicMock
 import json
 import time
-from okex_trading import trailing_stop_monitor
+from okex_trading_back import trailing_stop_monitor
 
 # 测试移动止盈
 class TestTrailingStopMonitor(unittest.TestCase):
