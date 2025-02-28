@@ -1,0 +1,24 @@
+{
+  "global": {
+    "symbol_info_file": "symbol_info.json",
+    "wx_token": "SCT257429Ts36D3miOQvAqJJVVHrJLZfKa",
+    "listen_port": 8888,
+    "listen_host": "0.0.0.0",
+    "debug_mode": true,
+    "ip_white_list": "52.89.214.238,34.212.75.30,54.218.53.128,52.32.178.7,127.0.0.1"
+  },
+  "account_list": [
+    {
+      "api_key": "f6055f52-6fbb-4623-a9c8-454b9eff3c7f",
+      "secret_key": "2114B70994EF0F8AE989DFBAE8B5AEE2",
+      "passphrase": "Test2025@okx.com",
+      "flag": "1"
+    },
+        {
+      "api_key": "80791c49-301a-401e-9e5a-5ec357eaacc9",
+      "secret_key": "B63975171240E8457879CFE55B58E4F7",
+      "passphrase": "Robin3910!",
+      "flag": "1"
+    }
+  ]
+}
