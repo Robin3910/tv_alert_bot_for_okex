@@ -386,12 +386,10 @@ class OkxAccountHelper:
                     "trail_profit_type": 0
                 }
 
-            # 更新杠杆值
-            if symbol_info[symbol_key]['leverage'] != _params['leverage']:
-                if instance.setLever(symbol, tdMode, _params['leverage']):
-                    symbol_info[symbol_key]['leverage'] = _params['leverage']
-                    self.save_symbol_info(symbol_info, instance)
-                    self.logger.info(f"更新杠杆值成功: {symbol_key} = {_params['leverage']}")
+            # 无论杠杆值是否有变化，都更新一下杠杆值
+            symbol_info[symbol_key]['leverage'] = _params['leverage']
+            self.save_symbol_info(symbol_info, instance)
+            self.logger.info(f"更新杠杆值成功: {symbol_key} = {_params['leverage']}")
 
         pos_res = instance.get_account_api().get_positions(instId=symbol)
         pos_amount = 0
