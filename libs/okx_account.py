@@ -141,14 +141,15 @@ class OkxAccount:
                 mgnMode=_tdMode
             )
             if res['code'] == '0':
+                self.logger.info(f"{self.api_key}设置杠杆成功{_symbol}|{_lever}|{_tdMode}")
                 return True
             else:
                 self.logger.info("setLever " + res["code"] + "|" + res['msg'])
-                self.okx_helper.send_wx_notification("设置杠杆失败", f"设置杠杆失败: {res['msg']}")
+                self.okx_helper.send_wx_notification("设置杠杆失败", f"{self.api_key}|{_symbol}|{_lever}|{_tdMode}|设置杠杆失败: {res['msg']}")
                 return False
         except Exception as e:
             self.logger.info("setLever 失败" + str(e))
-            self.okx_helper.send_wx_notification("设置杠杆失败", f"设置杠杆失败: {str(e)}")
+            self.okx_helper.send_wx_notification("设置杠杆失败", f"{self.api_key}|{_symbol}|{_lever}|{_tdMode}|设置杠杆失败: {str(e)}")
             return False
 
     # 取消止盈止损订单
