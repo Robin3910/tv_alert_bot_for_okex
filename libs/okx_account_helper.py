@@ -17,7 +17,7 @@ class OkxAccountHelper:
         logger.debug("初始化OkxAccountHelper")
         # 初始化日志
         self.logger=logger
-        # 初始化应用路劲
+        # 初始化应用路径
         self.root_path = root_path
         # 按照key索引存放账户信息
         self.accounts = []
@@ -449,11 +449,11 @@ class OkxAccountHelper:
                 ret['msg'] = 'Amount is too small. Please increase amount.'
             else:
                 if action.lower() == "buy":
-                    tp = price * (1 + tp_percent)
-                    sl = price * (1 - sl_percent)
+                    tp = round(price * (1 + tp_percent), instance.tickSizeMap[symbol])
+                    sl = round(price * (1 - sl_percent), instance.tickSizeMap[symbol])
                 else:
-                    tp = price * (1 - tp_percent)
-                    sl = price * (1 + sl_percent)
+                    tp = round(price * (1 - tp_percent), instance.tickSizeMap[symbol])
+                    sl = round(price * (1 + sl_percent), instance.tickSizeMap[symbol])
                 ord_id, attach_oid, ret['msg'] = instance.create_order(symbol, sz, price, action, order_type, tdMode, tp, sl,
                                                              tp_sl_order_type)
 

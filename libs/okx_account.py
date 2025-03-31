@@ -34,6 +34,22 @@ class OkxAccount:
             return account_info['data']
         return None
 
+    def get_decimal_places(tick_size):
+        """
+        计算价格精度，只取到第一个非零数字的位置
+        例如：
+        0.0001000 -> 4
+        0.001 -> 3
+        1.0 -> 0
+        """
+        if '.' not in tick_size:
+            return 0
+        
+        decimal_part = tick_size.split('.')[1]
+        for i, digit in enumerate(decimal_part):
+            if digit != '0':
+                return i + 1
+        return 0
     # 获取公共数据，包含合约面值等信息
     def init_instruments(self):
         c = 0
@@ -43,7 +59,11 @@ class OkxAccount:
             # swapInstrumentsRes = exchange.publicGetPublicInstruments(params={"instType": "SWAP"})
             if swapInstrumentsRes['code'] == '0':
                 self.swapInstruments = swapInstrumentsRes['data']
+                self.tickSizeMap = {}
+                for i in self.swapInstruments:
+                    self.tickSizeMap[i['instId'] + i['instType']] = self.get_decimal_places(i['tickSz'])
                 self.logger.info(f"{self.api_key}永续合约基础信息: {self.swapInstruments}")
+                self.logger.info(f"{self.api_key}永续合约tickSizeMap: {self.tickSizeMap}")
                 c = c + 1
         except Exception as e:
             self.logger.info(f"{self.api_key}publicGetPublicInstruments 失败" + str(e))
@@ -122,7 +142,7 @@ class OkxAccount:
                 return ord_id, attachAlgoOrds[0]['attachAlgoClOrdId'], "create order successfully"
             else:
                 self.logger.info(
-                    f"{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}|create order failed")
+                    f"res:{res['data'][0]['sMsg']}|{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}|create order failed")
                 self.okx_helper.send_wx_notification("创建订单失败",
                                                      f"创建订单失败|{_symbol}|{_amount}|{_price}|{_side}|{_ordType}|{_tdMode}|{tp}|{sl}: {res['data'][0]['sMsg']}")
                 return "", "", res['data'][0]['sMsg']
