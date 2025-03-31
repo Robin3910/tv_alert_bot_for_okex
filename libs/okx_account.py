@@ -34,7 +34,7 @@ class OkxAccount:
             return account_info['data']
         return None
 
-    def get_decimal_places(tick_size):
+    def get_decimal_places(self,tick_size):
         """
         计算价格精度，只取到第一个非零数字的位置
         例如：
@@ -61,7 +61,7 @@ class OkxAccount:
                 self.swapInstruments = swapInstrumentsRes['data']
                 self.tickSizeMap = {}
                 for i in self.swapInstruments:
-                    self.tickSizeMap[i['instId'] + i['instType']] = self.get_decimal_places(i['tickSz'])
+                    self.tickSizeMap[i['instId']] = self.get_decimal_places(i['tickSz'])
                 self.logger.info(f"{self.api_key}永续合约基础信息: {self.swapInstruments}")
                 self.logger.info(f"{self.api_key}永续合约tickSizeMap: {self.tickSizeMap}")
                 c = c + 1
