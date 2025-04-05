@@ -484,13 +484,13 @@ class OkxAccountHelper:
                     })
                     self.logger.info(f"{symbol}|开仓成功开始保存数据\n{symbol_info}")
                     self.save_symbol_info(symbol_info,instance)
+        
         # 平仓
-        elif _params['side'].lower() in ["close"]:
-            lastOrdType = None
+        elif action.lower() in ["close"]:
             ret["closedPosition"] = instance.close_all_position(symbol, tdMode)
 
         # 取消挂单
-        elif _params['side'].lower() in ["cancel"]:
+        elif action.lower() in ["cancel"]:
             lastOrdType = None
             ret["cancelLastOrder"] = instance.cancel_last_order(symbol, instance.lastOrdId)
         else:

@@ -95,11 +95,11 @@ class OkxAccount:
             if result['code'] == '0':
                 return True
             else:
-                self.logger.info("closeAllPosition " + result["code"] + "|" + result['msg'])
+                self.logger.info(f"{self.api_key}|{_symbol}|{_tdMode}|closeAllPosition " + result["code"] + "|" + result['msg'])
                 self.okx_helper.send_wx_notification(f"{self.api_key}平仓失败", f"平仓失败: {result['msg']}")
                 return False
         except Exception as e:
-            self.logger.info("closeAllPosition 失败" + str(e))
+            self.logger.info(f"{self.api_key}|{_symbol}|{_tdMode}|closeAllPosition 失败" + str(e))
             self.okx_helper.send_wx_notification(f"{self.api_key}平仓失败", f"平仓失败: {str(e)}")
             return False
 
