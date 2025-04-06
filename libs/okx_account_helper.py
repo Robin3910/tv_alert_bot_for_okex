@@ -451,9 +451,13 @@ class OkxAccountHelper:
                 if action.lower() == "buy":
                     tp = round(price * (1 + tp_percent), instance.tickSizeMap[symbol])
                     sl = round(price * (1 - sl_percent), instance.tickSizeMap[symbol])
+                    if sl < 0:
+                        sl = 0
                 else:
                     tp = round(price * (1 - tp_percent), instance.tickSizeMap[symbol])
                     sl = round(price * (1 + sl_percent), instance.tickSizeMap[symbol])
+                    if tp < 0:
+                        tp = 0
                 ord_id, attach_oid, ret['msg'] = instance.create_order(symbol, sz, price, action, order_type, tdMode, tp, sl,
                                                              tp_sl_order_type)
 
