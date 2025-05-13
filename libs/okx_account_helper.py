@@ -196,6 +196,7 @@ class OkxAccountHelper:
                                             tdMode="cross",
                                             side="sell" if pos_amount > 0 else "buy",
                                             ordType="oco",
+                                            reduceOnly=True,
                                             sz=abs(pos_amount),
                                             tpTriggerPx=tpOrdPx,
                                             tpOrdPx=tpOrdPx,
@@ -481,7 +482,7 @@ class OkxAccountHelper:
                         'trail_profit_1_percent': trail_profit_1_percent,
                         'trail_stop_callback': trail_stop_callback,
                         'trail_stop_activation': trail_stop_activation,
-                        'bool_trail_stop': bool_trail_stop,
+                        'bool_trail_stop': bool_trail_stop, # 追踪移动止盈止损
                         "trail_profit_type": 0,
                         "active_trail_stop": False,
                         "trail_stop_highest_price": 0,
